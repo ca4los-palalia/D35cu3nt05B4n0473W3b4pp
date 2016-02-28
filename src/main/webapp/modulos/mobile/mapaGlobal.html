@@ -1,0 +1,350 @@
+
+<meta charset="UTF-8">
+<HTML ng-app="mapaApp">
+	<HEAD>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="https://code.angularjs.org/1.4.8/angular.js"></script>
+		<script src="../js/utils.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		
+		<script>
+			//window.location.href="#openModal" 
+			
+			
+			
+			var latLast;
+			var lonLast;
+			var coordenadasArray;
+			var startUpdate = false;
+			
+			var promociones = new Object();
+			var mapaApp = angular.module('mapaApp', []);
+			
+			mapaApp.controller('mapaCtrl', function ($scope, $http, $timeout){
+				
+				$scope.value = 1;
+			    var poll = function() {
+			        $timeout(function() {
+			            $scope.value++;
+			            
+			            
+						
+						var coor = coordenadasArray[0];
+						var arrayCoor = [];
+						arrayCoor = coor.split(",");
+						lat = arrayCoor[0];
+						lon = arrayCoor[1];
+						
+						if (typeof(latLast) === 'undefined'){
+							latLast = lat;
+							startUpdate = true;
+						}
+							
+						
+						
+						//console.log($scope.value + ": lat " + lat  + ", " + latLast);
+			        	if(latLast == lat){
+			        		//console.log($scope.value + ": NO HACER REARGA");
+			        	}else{
+			        		latLast = lat;
+		        			lonLast = lon;
+			        		//console.log($scope.value + ": ACTUALIZAR ");
+			        		initialize(coordenadasArray);
+			        		location.reload(true);
+			        	}
+			        	initMap();
+						
+			        	
+						
+			            poll();
+			        }, 3000);
+			    };     
+			   poll();
+				
+				
+				//
+			});
+			
+	
+			function initMap() {
+				if (window.XDomainRequest) xmlhttp = new XDomainRequest();
+				else if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+				else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+				xmlhttp.open("GET", "http://localhost:9090/DescuentosBanorte/crunchify/coordenadasPromo/", false);
+				xmlhttp.send();
+
+				hostipInfo = xmlhttp.responseText.split("\n");
+				coordenadasArray = hostipInfo;
+				if(startUpdate == false)
+					initialize(hostipInfo);
+			}
+			
+			var map;
+			var markers = [];
+			function initialize(coordenadas) {
+				var coor = coordenadas[0];
+				var arrayCoor = [];
+				arrayCoor = coor.split(",")
+				
+				var haightAshbury = {lat: parseFloat(arrayCoor[0]), lng: parseFloat(arrayCoor[1])};
+				
+				map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 14,
+					center: haightAshbury,
+					mapTypeId: google.maps.MapTypeId.TERRAIN
+				});
+				
+				// This event listener will call addMarker() when the map is clicked.
+				map.addListener('click', function(event) {
+					addMarker(event.latLng);
+				});
+
+				// Adds a marker at the center of the map.
+				addMarker(haightAshbury);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				var coordenadasTemp = [];
+				var point = null;
+				var contador = 0;
+				$.each(promociones, function(index, val) {
+					coordenadasTemp = val.ubicacion;
+					$.each(coordenadasTemp, function(index2, val2) {
+						var array2 = [];
+						array2 = val2;
+						point = {lat: array2.lat, lng: array2.lon};
+						addMarker(point, val.name);
+						//console.log(val.name + " | " + array2.lat + "," + array2.lon)
+						
+						
+						
+						/*getAddressCoordenada(array2.lat, array2.lon);
+						estadoTemp = buscarCoincidencias(localStorage.getItem("addressTemp"), estadosMineria);
+						console.log("Estado: " + estadoTemp)*/
+						contador ++;
+					})
+				})
+				console.log("Total de puntos: " + contador)
+			}
+
+			// Adds a marker to the map and push to the array.
+			function addMarker(location, titleIn) {
+				var marker = new google.maps.Marker({
+					position: location,
+					map: map,
+					icon: 'puntero.png',
+					title: titleIn
+				});
+				markers.push(marker);
+				google.maps.event.addListener(marker, 'click', function(){
+					var popup = new google.maps.InfoWindow();
+					var note = "Coordenadas: lat:" + location['lat'] + ", lon: " + location['lng']
+					popup.setContent(note);
+					popup.open(map, this);
+				});
+			}
+			// Sets the map on all markers in the array.
+			function setMapOnAll(map) {
+				for (var i = 0; i < markers.length; i++) {
+					markers[i].setMap(map);
+				}
+			}
+			// Removes the markers from the map, but keeps them in the array.
+			function clearMarkers() {
+				setMapOnAll(null);
+			}
+			// Shows any markers currently in the array.
+			function showMarkers() {
+				setMapOnAll(map);
+			}
+			// Deletes all markers in the array by removing references to them.
+			function deleteMarkers() {
+				clearMarkers();
+				markers = [];
+			}
+		
+		</script>
+		
+		<style>
+			html, body { height: 100%; width: 100%; margin: 0; }
+			
+			.load-bar {
+				position: relative;
+				margin-top: 20px;
+				width: 100%;
+				height: 6px;
+				background-color: #fdba2c;
+			}
+			.bar {
+				content: "";
+				display: inline;
+				position: absolute;
+				width: 0;
+				height: 100%;
+				left: 50%;
+				text-align: center;
+			}
+			.bar:nth-child(1) {
+				background-color: #da4733;
+				animation: loading 3s linear infinite;
+			}
+			.bar:nth-child(2) {
+				background-color: #3b78e7;
+				animation: loading 3s linear 1s infinite;
+			}
+			.bar:nth-child(3) {
+				background-color: #fdba2c;
+				animation: loading 3s linear 2s infinite;
+			}
+			@keyframes loading {
+				from {left: 50%; width: 0;z-index:100;}
+				33.3333% {left: 0; width: 100%;z-index: 10;}
+				to {left: 0; width: 100%;}
+			}
+			
+			.modalDialog {
+				position: fixed;
+				font-family: Arial, Helvetica, sans-serif;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 99999;
+				opacity:0;
+				-webkit-transition: opacity 400ms ease-in;
+				-moz-transition: opacity 400ms ease-in;
+				transition: opacity 400ms ease-in;
+				pointer-events: none;
+			}
+			.modalDialog:target {
+				opacity:1;
+				pointer-events: auto;
+			}
+			.modalDialog > div {
+				width: 400px;
+				position: relative;
+				margin: 10% auto;
+				padding: 5px 20px 13px 20px;
+				border-radius: 10px;
+				background: #fff;
+				background: -moz-linear-gradient(#fff, #999);
+				background: -webkit-linear-gradient(#fff, #999);
+				background: -o-linear-gradient(#fff, #999);
+			}
+			.close {
+				background: #606061;
+				color: #FFFFFF;
+				line-height: 25px;
+				position: absolute;
+				right: -12px;
+				text-align: center;
+				top: -10px;
+				width: 24px;
+				text-decoration: none;
+				font-weight: bold;
+				-webkit-border-radius: 12px;
+				-moz-border-radius: 12px;
+				border-radius: 12px;
+				-moz-box-shadow: 1px 1px 3px #000;
+				-webkit-box-shadow: 1px 1px 3px #000;
+				box-shadow: 1px 1px 3px #000;
+			}
+			.close:hover {
+				background: #00d9ff;
+			}
+
+			[data-tooltip] {
+				position: relative;
+				z-index: 2;
+				cursor: pointer;
+			}
+
+			/* Hide the tooltip content by default */
+			[data-tooltip]:before,
+			[data-tooltip]:after {
+				visibility: hidden;
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+				filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			/* Position tooltip above the element */
+			[data-tooltip]:before {
+				position: absolute;
+				bottom: 150%;
+				left: 50%;
+				margin-bottom: 5px;
+				margin-left: -80px;
+				padding: 7px;
+				width: 160px;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				background-color: #000;
+				background-color: hsla(0, 0%, 20%, 0.9);
+				color: #fff;
+				content: attr(data-tooltip);
+				text-align: center;
+				font-size: 14px;
+				line-height: 1.2;
+			}
+
+			/* Triangle hack to make tooltip look like a speech bubble */
+			[data-tooltip]:after {
+				position: absolute;
+				bottom: 150%;
+				left: 50%;
+				margin-left: -5px;
+				width: 0;
+				border-top: 5px solid #000;
+				border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+				border-right: 5px solid transparent;
+				border-left: 5px solid transparent;
+				content: " ";
+				font-size: 0;
+				line-height: 0;
+			}
+
+			/* Show tooltip content on hover */
+			[data-tooltip]:hover:before,
+			[data-tooltip]:hover:after {
+				visibility: visible;
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+				filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+				opacity: 1;
+			}
+		</style>
+	</HEAD>
+	<BODY ng-controller="mapaCtrl">
+		<div data-chart data-value="value"></div>
+		<div id="openModal" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close" style="visibility: hidden">X</a>
+				<h2>Cargando puntos en el mapa...</h2>
+				
+				<div class="load-bar">
+				  <div class="bar"></div>
+				  <div class="bar"></div>
+				  <div class="bar"></div>
+				</div>
+							
+			</div>
+		</div>
+		
+		<div id="map" style="height: 100%; width: 100%; padding-top: 20px;"></div>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtK-vLlqH4k8tKyGtUwWXMEOK13TvID2I&callback=initMap">
+		</script>
+		
+	</BODY>
+</HTML> 

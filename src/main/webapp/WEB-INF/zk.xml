@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+	<client-config>
+		<error-reload>
+			<device-type>ajax</device-type>
+			<error-code>404</error-code>
+			<reload-uri>/login.zul</reload-uri>
+		</error-reload>
+	</client-config>
+
+	<desktop-config>
+		<theme-uri>/styles/home/styleLogin.css</theme-uri>
+		<theme-uri>/styles/home/styleHome.css</theme-uri>
+		<theme-uri>/styles/home/styleCenter.css</theme-uri>
+		<theme-uri>/styles/home/styleFooter.css</theme-uri>
+	</desktop-config>
+
+	<session-config>
+		<!-- session-timeout>600</session-timeout> -->
+		<session-timeout>6000</session-timeout>
+		<device-type>ajax</device-type>
+		<automatic-timeout>true</automatic-timeout>
+		<timeout-uri>/login.zul</timeout-uri>
+		<timeout-message>
+			Su sesión ha expirado. Porfavor autentifíquese
+			nuevamente
+		</timeout-message>
+	</session-config>
+
+</zk>

@@ -1,0 +1,414 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<style src="/styles/proveedores/styleProveedor.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.proveedor.ProveedoresVM')">
+
+		<grid>
+			<columns>
+				<column width="22%" />
+				<column />
+				<column width="35%" zclass="shadowMenuActions" />
+			</columns>
+			<rows>
+				<row zclass="shadowMenuActions">
+					<div style="margin:5px">
+						<label zclass="panelInfoItemMenuTitle"
+							width="100%" value="PROVEEDORES:" />
+					</div>
+					<div style="margin:5px">
+						<label zclass="panelInfoItemMenuContent"
+							width="100%"
+							value="Altas, bajas, actualización y busqueda de proveedores" />
+					</div>
+					<hlayout style="text-align:right">
+						<button image="/images/toolbar/clear.png"
+							sclass="web_button" visible="@bind(pvm.botonMuenu1.visible)"
+							onClick="@command('nuevoProveedor')"
+							tooltiptext="limpia formulario para nueva captura" />
+
+						<button image="/images/toolbar/saveOff.png"
+							sclass="web_button" visible="@bind(pvm.botonMuenu2.visible)"
+							onClick="@command('newRecord')" tooltiptext="Guardar proveedor" />
+
+
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+
+		<separator />
+		<separator />
+
+		<tabbox>
+			<tabs>
+				<tab label="Informacion general" />
+				<tab label="Contacto" />
+				<tab label="Contrato" />
+				<tab label="Cuenta pago" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<separator />
+					<separator />
+					<separator />
+					<grid style="border: 0;">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Nombre"
+									style="text-align:right;" />
+								<textbox
+									value="@bind(pvm.nuevoProveedor.nombre)" maxlength="25"
+									width="100%" />
+								<label value="Giro" />
+								
+								<combobox model="@load(pvm.giros)" autocomplete="true"
+									selectedItem="@bind(pvm.nuevoProveedor.giro)"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="Razon social:" />
+								<textbox type="text"
+									value="@bind(pvm.nuevoProveedor.razonSocial)" maxlength="20"
+									width="100%" />
+								<label value="RFC:" />
+								<textbox type="text"
+									value="@bind(pvm.nuevoProveedor.rfc)" maxlength="13"
+									zclass="upperCase" width="100%" />
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*País:" />
+								<combobox model="@load(pvm.paises)"
+									selectedItem="@bind(pvm.paisProveedor)" autocomplete="true"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+								<label value="*Estado:" />
+								<combobox model="@load(pvm.estados)"
+									selectedItem="@bind(pvm.estadoProveedor)" autocomplete="true"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="Ciudad:" />
+								<textbox type="text"
+									value="@bind(pvm.direccionProveedor.cuidad)" maxlength="20"
+									width="100%" />
+								<label value="*Municipio:" />
+								<combobox model="@load(pvm.municipios)"
+									selectedItem="@bind(pvm.municipioProveedor)" autocomplete="true"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Colonia:" />
+								<textbox type="text"
+									value="@bind(pvm.direccionProveedor.colonia)" maxlength="20"
+									width="100%" />
+								<label value="*Calle:" />
+								<textbox type="text"
+									value="@bind(pvm.direccionProveedor.calle)" maxlength="20"
+									width="100%" />
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Número exterior:" />
+								<textbox
+									value="@bind(pvm.direccionProveedor.numExt)" maxlength="4"
+									width="100%" />
+								<label value="Número interior:" />
+								<textbox
+									value="@bind(pvm.direccionProveedor.numInt)" maxlength="4"
+									width="100%" />
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="Código postal:" />
+								<textbox
+									value="@bind(pvm.direccionProveedor.cp)" maxlength="5"
+									width="100%" />
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Telefono:" />
+								<textbox
+									value="@bind(pvm.telefonoProveedor.numero)" maxlength="10"
+									width="100%" tooltiptext="telefono del proveedor" />
+								<label value="Fax:" />
+								<textbox
+									value="@bind(pvm.telefonoProveedor.fax)" maxlength="10"
+									width="100%" />
+							</row>
+
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Email:" />
+								<textbox type="text"
+									value="@bind(pvm.emailProveedor.email)" maxlength="27"
+									width="100%"
+									constraint="/.+@.+\.[a-z]+/: por favor ingrése una direccion de correo"
+									tooltiptext="email del proveedor" />
+								<label value="Pagina web:" />
+								<textbox type="text"
+									value="@bind(pvm.nuevoProveedor.paginaWeb)" cols="30"
+									maxlength="20" width="100%" />
+							</row>
+						</rows>
+					</grid>
+
+					<separator />
+					<separator />
+					<separator />
+
+					<groupbox>
+						<caption sclass="folder formatTitleGroup"
+							label="Comentarios" />
+						<textbox multiline="true" zclass="widthComent"
+							value="@bind(pvm.nuevoProveedor.comentario)" />
+					</groupbox>
+				</tabpanel>
+
+				<tabpanel>
+
+					<separator />
+					<separator />
+					<separator />
+
+					<grid style="border: 0;">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;"
+								tooltiptext="Apellidos">
+								<label value="*Apellido paterno" />
+								<textbox 
+									value="@bind(pvm.personaContacto.apellidoPaterno)"
+									maxlength="17" width="100%"
+									tooltiptext="Ap paterno de la persona contacto" />
+								<label value="*Apellido materno" />
+								<textbox
+									value="@bind(pvm.personaContacto.apellidoMaterno)"
+									maxlength="17" width="100%"
+									tooltiptext="Ap materno de la persona contacto" />
+							</row>
+						</rows>
+					</grid>
+
+					<grid style="border: 0;">
+
+						<columns>
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;" spans="1"
+								tooltiptext="Nombre completo del contacto">
+								<label value="*Nombre" />
+								<textbox
+									value="@bind(pvm.personaContacto.nombre)" maxlength="17"
+									width="100%" tooltiptext="Nombre de la persona contacto" />
+							</row>
+						</rows>
+					</grid>
+
+
+					<grid style="border: 0;">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="RFC" />
+								<textbox type="text"
+									value="@bind(pvm.personaContacto.rfc)" maxlength="13"
+									zclass="upperCase" width="100%" />
+								<label value="CURP:" />
+								<textbox type="text"
+									value="@bind(pvm.personaContacto.curp)" maxlength="18"
+									zclass="upperCase" width="100%" />
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Teléfono" />
+								<textbox
+									value="@bind(pvm.telefonoContacto.numero)" maxlength="10"
+									width="100%" />
+								<label value="Extensión:" />
+								<textbox
+									value="@bind(pvm.telefonoContacto.extension)" maxlength="5"
+									width="100%" />
+							</row>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Email:" />
+								<textbox type="text"
+									value="@bind(pvm.emailContacto.email)" maxlength="27"
+									width="100%"
+									constraint="/.+@.+\.[a-z]+/: por favor ingrése una direccion de correo" />
+
+								<label value="Celular:" />
+								<textbox
+									value="@bind(pvm.telefonoContacto.celular)" maxlength="10"
+									width="100%" />
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+				<tabpanel>
+					<separator />
+					<separator />
+					<separator />
+					<grid style="border: 0;">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;"
+								visible="false">
+								<label value="*Dias pagos normales:" />
+								<longbox maxlength="2" width="100%"
+									value="@bind(pvm.contrato.diasPago)" />
+								<label value="Fecha" />
+								<datebox readonly="true"
+									format="yyyy/MM/dd" width="100%" />
+							</row>
+
+							<row  
+								style="background-color:transparent; border: 0;">
+								<label value="*Fecha vigencia inicio:" />
+								<datebox readonly="true" value="@bind(pvm.contratoVigenciaInicio)"
+									format="yyyy/MM/dd" width="100%" />
+								<label value="*Fecha vigencia fin:" />
+								<datebox readonly="true" value="@bind(pvm.contratoVigenciaFin)"
+									format="yyyy/MM/dd" width="100%" />
+							</row>
+
+						</rows>
+					</grid>
+				</tabpanel>
+
+				<tabpanel>
+
+					<separator />
+					<separator />
+					<separator />
+
+					<grid style="border: 0;">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column width="20%" />
+							<column />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;">
+								<label value="*Moneda" />
+								<combobox model="@load(pvm.monedasDB)"
+									selectedItem="@bind(pvm.monedaSeleccionada)" autocomplete="true"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+
+								<label value="*Banco" />
+								<combobox model="@load(pvm.bancosDB)"
+									selectedItem="@bind(pvm.bancoSeleccionado)" autocomplete="true"
+									width="100%">
+									<template name="model">
+										<comboitem
+											label="@load(each.nombre)" />
+									</template>
+								</combobox>
+							</row>
+						</rows>
+					</grid>
+					<grid style="border: 0;">
+
+						<columns>
+							<column width="20%" />
+							<column></column>
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;" spans="1">
+								<label value="*Cuenta bancaria:" />
+								<textbox width="100%"
+									value="@bind(pvm.cuentaPago.cuentaBancaria)" maxlength="20" />
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+
+
+
+
+
+
+
+	</window>
+</zk>

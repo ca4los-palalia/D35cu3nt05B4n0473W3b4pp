@@ -1,0 +1,408 @@
+<?page title="Descuentos Banorte" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+
+	<style
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+		type="text/javascript" />
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		type="text/javascript" />
+
+	<style src="/styles/home/styleLogin.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<div apply="org.zkoss.bind.BindComposer" zclass="loginContainer"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.cliente.ClienteVM')">
+		<popup id="mail" width="300px" sclass="z-popup">
+			<html>				
+				<![CDATA[ Please enter real email address. <br /> The
+				validator allow multiple email addresses separated by
+				semi-colons (<font color="red">;</font>).<br /> For
+				Example:<u>zk@zkoss.org</u>;<u>info@zkoss.org</u> ]]>
+			</html>
+		</popup>
+
+
+		<borderlayout>
+			<north maxsize="300" size="13%"
+				style="background-color: #EB0029;">
+				<grid width="100%" sclass="tblWithoutHover"
+					oddRowSclass="none" style="border: 0;">
+					<columns>
+						<column align="center" width="30%" />
+						<column align="center" />
+					</columns>
+					<rows>
+						<row
+							style="background-color: #EB0029; border: 0;">
+							
+							<a href="http://descuentosbanorte.com.mx/">
+								<image src="/images/menu/logo.png" />
+							</a>
+							
+							<grid width="100%" sclass="tblWithoutHover"
+								oddRowSclass="none" style="border: 0;">
+								<columns>
+									<column align="center"/>
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+									<column align="center" />
+								</columns>
+								<rows>
+									<row
+										style="background-color: #EB0029; border: 0;">
+										
+										<a href="http://descuentosbanorte.com.mx/">
+											<image 
+											src="/images/menu/inicio.png" style="cursor: pointer;" />
+										</a>
+										<image
+											src="/images/menu/promos.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasPromocionesEspeciales')" />
+										<image
+											src="/images/menu/msi.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasMesesSinIntereses')" />
+										<image
+											src="/images/menu/restaurantes.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasRestaurantes')" />
+										<image
+											src="/images/menu/viajes.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasViajes')" />
+										<image
+											src="/images/menu/salud.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasSaludBienestar')" />
+										<image
+											src="/images/menu/tecno.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasTecnologia')" />
+										<image
+											src="/images/menu/estilo.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasEstiloVida')" />
+										<image
+											src="/images/menu/mujer.png" style="cursor: pointer;"
+											onClick="@command('getCategoriasMujer')" />
+										<image
+											src="/images/menu/especialidades.png"
+											style="cursor: pointer;"
+											onClick="@command('getCategoriasEspecialidades')" />
+										<a href="http://descuentosbanorte.com.mx/index.php/contacto">
+											<image
+											src="/images/menu/contacto.png" style="cursor: pointer;" />
+										</a>
+									</row>
+								</rows>
+							</grid>
+
+						</row>
+					</rows>
+				</grid>
+			</north>
+			<center>
+				<borderlayout>
+					<center border="0">
+						<borderlayout>
+							<west maxsize="800" size="50%" border="0"
+								autoscroll="true">
+								<window><!-- MENU LATERAL -->
+									<window>
+										<grid width="100%"
+											sclass="tblWithoutHover" oddRowSclass="none"
+											style="border: 0;">
+											<columns>
+												<column align="center" />
+												<column align="center" />
+											</columns>
+											<rows>
+												<row
+													style="border: 0;">
+													<image onClick="@command('categoriasProgramaLateral1')"
+														tooltip="mail" src="@bind(vm.imagen1)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+													<image onClick="@command('categoriasProgramaLateral2')"
+														src="@bind(vm.imagen2)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+												</row>
+												<row
+													style="border: 0;">
+													<image onClick="@command('categoriasProgramaLateral3')"
+														src="@bind(vm.imagen3)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+													<image onClick="@command('categoriasProgramaLateral4')"
+														src="@bind(vm.imagen4)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+												</row>
+												<row
+													style="border: 0;">
+													<image onClick="@command('categoriasProgramaLateral5')"
+														src="@bind(vm.imagen5)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+													<image onClick="@command('categoriasProgramaLateral6')"
+														src="@bind(vm.imagen6)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+												</row>
+												<row
+													style="border: 0;">
+													<image onClick="@command('categoriasProgramaLateral7')"
+														src="@bind(vm.imagen7)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+													<image onClick="@command('categoriasProgramaLateral8')"
+														src="@bind(vm.imagen8)"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+												</row>
+											</rows>
+										</grid>
+									</window>
+								</window> <!-- END MENU LATERAL -->
+							</west>
+							<center flex="true">
+								<window>  <!-- NAVEGACION DE PROGRAMAS -->
+									<grid width="100%"
+										sclass="tblWithoutHover" oddRowSclass="none"
+										style="border: 0;">
+										<columns>
+											<column align="center" />
+										</columns>
+										<rows>
+											<row
+												style="background-color: #EB0029; border: 0;"
+												height="40px">
+												<label width="100%"
+													style="color: white; font-size:130%;"
+													value="@load(vm.programa.nombre)" />
+											</row>
+										</rows>
+									</grid>
+
+									<separator height="5px" />
+
+									<listbox width="100%" vflex="1"
+										visible="@bind(vm.hidde1)"
+										onSelect="@command('seleccionaCategoria')"
+										selectedItem="@bind(vm.categoria)"
+										emptyMessage="No hay categorias"
+										model="@bind(vm.categorias)">
+
+										<listhead>
+											<listheader align="center"
+												width="15%" />
+											<listheader />
+										</listhead>
+										<template name="model"
+											var="varItem">
+											<listitem>
+												<listcell>
+													<image
+														class="img-circle" content="@load(varItem.logoAImage)"
+														width="70px" height="70px" />
+												</listcell>
+												<listcell>
+													<label width="100%"
+														value="@load(varItem.nombreCategoria)" />
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
+
+									<!-- LISTA DE PROMOCIONES -->
+
+									<listbox width="100%" vflex="1"
+										visible="@bind(vm.hidde2)" emptyMessage="No hay promociones"
+										model="@bind(vm.promocionProgramaCategorias)"
+										onSelect="@command('seleccionaPromocion')"
+										selectedItem="@bind(vm.promocionProgramaCategoria)">
+
+										<listhead>
+											<listheader align="center"
+												width="15%">
+												<image
+													tooltiptext="Regresar a lista de catalogos"
+													onClick="@command('returnCategorias')"
+													src="/images/toolbar/goback24.png"
+													style="max-width:100%;height:auto; cursor: pointer;" />
+											</listheader>
+											<listheader
+												label="@bind(vm.categoria.nombreCategoria)" />
+										</listhead>
+										<template name="model"
+											var="varItem">
+											<listitem>
+												<listcell>
+													<image
+														class="img-circle"
+														content="@load(varItem.promocion.logoAImage)"
+															width="70px" height="70px"/>
+												</listcell>
+												<listcell>
+													<label width="100%"
+														value="@load(varItem.promocion.nombre)" />
+												</listcell>
+											</listitem>
+										</template>
+									</listbox>
+
+									<!-- DETALLES DE LA PROMOCION -->
+									<window
+										visible="@bind(vm.hidde3)">
+
+										<grid width="100%"
+											sclass="tblWithoutHover" oddRowSclass="none"
+											style="border: 0;">
+											<columns>
+												<column align="center"
+													width="10%" />
+												<column />
+											</columns>
+											<rows>
+												<row
+													style="border: 0; background-color: #CCCCCC;">
+													<image
+														tooltiptext="Regresar a lista de promociones"
+														onClick="@command('returnPromociones')"
+														src="/images/toolbar/goback24.png"
+														style="max-width:100%;height:auto; cursor: pointer;" />
+													<label
+														value="@bind(vm.promocion.nombre)" />
+												</row>
+											</rows>
+										</grid>
+
+
+										<grid width="100%"
+											sclass="tblWithoutHover" oddRowSclass="none"
+											style="border: 0;">
+											<columns>
+												<column align="center" />
+											</columns>
+											<rows>
+												<row
+													style="border: 0;">
+													<image
+														content="@bind(vm.promocion.logoAImage)"
+														style="max-width:100%;height:auto;" />
+												</row>
+											</rows>
+										</grid>
+
+
+										<grid width="100%"
+											sclass="tblWithoutHover" oddRowSclass="none"
+											style="border: 0;">
+											<columns>
+												<column />
+											</columns>
+											<rows>
+												<row
+													style="border: 0;">
+													<label
+														value="@bind(vm.promocion.oferta)"
+														style="color: #CC0033;" />
+												</row>
+												<row
+													style="border: 0;">
+
+													<label
+														value="@bind(vm.promocion.descripcionPromocion)"
+														style="text-align: justify; text-justify: inter-word;" />
+												</row>
+											</rows>
+										</grid>
+
+
+										<grid width="100%"
+											sclass="tblWithoutHover" oddRowSclass="none"
+											style="border: 0;">
+											<columns>
+												<column align="center" />
+											</columns>
+											<rows>
+												<row
+													style="border: 0;">
+													<image
+														content="@bind(vm.promocion.bannerAImage)"
+														style="max-width:100%;height:auto;" />
+												</row>
+											</rows>
+										</grid>
+									</window>
+								</window><!-- END NAVEGACION DE PROGRAMAS -->
+							</center>
+						</borderlayout>
+					</center>
+				</borderlayout>
+			</center>
+		</borderlayout>
+
+		<div width="100%" height="20%"
+			style="background-color: #EB0029;">
+			<grid width="100%" sclass="tblWithoutHover"
+				oddRowSclass="none" style="border: 0;">
+				<columns>
+					<column align="left" />
+					<column align="left" />
+					<column align="left" />
+				</columns>
+				<rows>
+					<row
+						style="background-color: #EB0029; border: 0; padding-left: 20px;">
+						<label value="Teléfonos" sclass="formatTitleFont"/>
+						<label value="E-mail" sclass="formatTitleFont"/>
+						<label value="" sclass="formatTitleFont"/>
+					</row>
+					<row
+						style="background-color: #EB0029; border: 0; padding-left: 20px;">
+						
+						<vlayout>
+							<hlayout>
+								<image src="/images/toolbar/movil.png"/>
+								<vlayout>
+									<label value="Alianzas Estratégicas" style="color: white; font-weight: bold;"/>
+									<label value="+01 (55) 36 89 13 99" style="color: white;"/>
+								</vlayout>
+							</hlayout>
+						</vlayout>
+						
+						<vlayout>
+							<hlayout>
+								<image src="/images/toolbar/email16.png"/>
+								<label value="info@descuentosbanorte.com.mx" style="color: white;"/>
+							</hlayout>
+							<separator height="10px"/>
+						</vlayout>
+						
+						
+						<vlayout>
+							<grid width="70%"
+								sclass="tblWithoutHover" oddRowSclass="none"
+								style="border: 0; background-color: #EB0029;">
+								<columns>
+									<column/>
+									<column/>
+								</columns>
+								<rows>
+									<row
+										style="border: 0; background-color: #EB0029;">
+										<image 
+											src="/images/toolbar/appStoreLogo.png"
+											style="max-width:100%;height:auto;" />
+										<image
+											src="/images/toolbar/googlePlayLogo.png"
+											style="max-width:100%;height:auto;" />
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+
+					</row>
+				</rows>
+			</grid>
+		</div>
+	</div>
+</zk>

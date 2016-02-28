@@ -1,0 +1,390 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('ovm') @init('com.cplsystems.stock.app.vm.ordencompra.OrdenCompraVM')">
+
+		<vlayout>
+			<grid><!-- MENU DE ACCIONES-->
+				<columns>
+					<column />
+					<column width="20%" zclass="shadowMenuActions" />
+				</columns>
+				<rows>
+					<row zclass="shadowMenuActions">
+						<div style="margin:5px">
+							<button
+								label="Órdenes de compra > orden de compra"
+								image="/images/toolbar/home32.png"
+								zclass="panelInfoItemMenuTitle" />
+						</div>
+
+						<hlayout>
+							<button image="/images/toolbar/accept32.png"
+								sclass="web_button" tooltiptext="Aprovar orden de compra"
+								onClick="@command('aceptarOrdenCompra')" />
+							<button image="/images/toolbar/delete.png"
+								tooltiptext="Cancelar orden de compra" sclass="web_button"
+								onClick="@command('abrirVentanaCancelacion')" />
+							<button image="/images/toolbar/pdf32.png"
+								sclass="web_button"
+								tooltiptext="Exportar orden de compra a PDF"
+								onClick="@command('imprimirOrdenCompra')" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+			<!-- END MENU DE ACCIONES-->
+		</vlayout>
+
+		<separator />
+
+		<groupbox mold="3d" open="false"
+			tooltiptext="Clic para ver formulario de busqueda">
+			<caption label="Buscar"
+				image="/images/toolbar/find16x16.png" />
+
+
+			<grid style="border: 0;">
+				<columns>
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row
+						style="background-color: transparent; border: 0;">
+						<checkbox onCheck="@command('checkNueva')"
+							label="Nueva" width="100%" />
+						<checkbox onCheck="@command('checkCancelada')"
+							label="Cancelada" width="100%" />
+						<checkbox onCheck="@command('checkAceptada')"
+							label="Aceptada" width="100%" />
+					</row>
+				</rows>
+			</grid>
+			<grid style="border: 0;">
+				<columns>
+					<column />
+					<column width="8%" />
+				</columns>
+				<rows>
+					<row
+						style="background-color:transparent; border: 0;">
+						<textbox
+							value="@bind(ovm.requisicion.buscarRequisicion)" width="100%" />
+
+						<hlayout style="text-align:center">
+
+							<button
+								image="/images/toolbar/find16x16.png" zclass="find_button"
+								onClick="@command('buscarOrdenCompra')" tooltiptext="Buscar" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+			<listbox rows="4" model="@load(ovm.ordenesCompras)"
+				selectedItem="@bind(ovm.ordenCompra)"
+				onSelect="@command('mostrarProductosOrdenCompra')"
+				emptyMessage="Sin ordenes de compra">
+				<listhead>
+
+					<listheader label="No" width="5%" />
+
+					<listheader label="Folio O.C." width="10%"
+						sort="auto(codigo)" />
+
+					<listheader label="Cotizacion" width="10%"
+						sort="auto(cotizacion.folioCotizacion)" />
+
+					<listheader label="Proveedor"
+						sort="auto(cotizacion.proveedor.nombre)" />
+
+					<listheader label="Estatus" width="12%"
+						sort="auto(estatusRequisicion.nombre)" />
+
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label style="font-size:smaller;"
+								value="${forEachStatus.index + 1}" />
+						</listcell>
+
+						<listcell>
+							<label style="font-size:smaller;"
+								value="@bind(each.codigo)" />
+						</listcell>
+						<listcell>
+							<label style="font-size:smaller;"
+								value="@bind(each.cotizacion.folioCotizacion)" />
+						</listcell>
+
+						<listcell>
+							<label
+								value="@bind(each.cotizacion.proveedor.nombre)" />
+						</listcell>
+
+						<listcell>
+							<div>
+								<hlayout
+									style="vertical-align: middle;">
+									<button
+										style="@bind(each.estatusRequisicion.color)" />
+									<label style="font-size:smaller;"
+										value="@bind(each.estatusRequisicion.nombre)" />
+								</hlayout>
+							</div>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+
+		<separator />
+
+		<groupbox mold="3d" open="false" width="100%">
+			<caption label="Informacion de la orden de compra"
+				image="/images/toolbar/info16.png" />
+
+
+			<grid style="border: 0;">
+				<columns>
+					<column width="13%" />
+					<column />
+					<column width="13%" />
+					<column />
+				</columns>
+				<rows>
+					<row
+						style="background-color: transparent; border: 0;">
+						<label value="Proveedor:"
+							style="font-weight:bold;" />
+
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<label style="font-size:smaller;"
+								value="@bind(ovm.ordenCompra.cotizacion.proveedor.nombre)" />
+						</div>
+
+						<label value="Atención:"
+							style="font-weight:bold;" />
+
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<hlayout>
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.representanteAteCliente.apellidoPaterno)" />
+								<label value=" " />
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.representanteAteCliente.apellidoMaterno)" />
+								<label value=" " />
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.representanteAteCliente.nombre)" />
+							</hlayout>
+						</div>
+
+					</row>
+				</rows>
+			</grid>
+
+			<grid style="border: 0;">
+				<columns>
+					<column width="13%" />
+					<column />
+
+				</columns>
+				<rows>
+					<row
+						style="background-color: transparent; border: 0;">
+
+						<label value="Dirección:"
+							style="font-weight:bold;" />
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<hlayout>
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.calle)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.numExt)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.colonia)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.cp)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.cuidad)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.estado.nombre)" />
+
+								<label style="font-size:smaller;"
+									value="@bind(ovm.ordenCompra.cotizacion.proveedor.direccionFiscal.pais.nombre)" />
+
+							</hlayout>
+						</div>
+					</row>
+				</rows>
+			</grid>
+
+			<grid style="border: 0;">
+				<columns>
+					<column width="13%" />
+					<column width="13%" />
+					<column width="7%" />
+					<column width="17%" />
+					<column width="13%" />
+					<column />
+				</columns>
+				<rows>
+					<row
+						style="background-color: transparent; border: 0;">
+						<label value="Telefono:"
+							style="font-weight:bold;" />
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<label style="font-size:smaller;"
+								value="@bind(ovm.ordenCompra.cotizacion.proveedor.representanteAteCliente.contacto.telefono.numero)" />
+						</div>
+						<label value="E-mail:"
+							style="font-weight:bold;" />
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<label style="font-size:smaller;"
+								value="@bind(ovm.ordenCompra.cotizacion.proveedor.representanteAteCliente.contacto.email.email)" />
+						</div>
+						<label value="Fecha:" style="font-weight:bold;" />
+						<div
+							style="border-bottom-style: solid; border-bottom-width: 1px;">
+							<datebox value="@bind(ovm.fecha)"
+								buttonVisible="false" readonly="true" />
+						</div>
+					</row>
+				</rows>
+			</grid>
+
+			<separator />
+
+			<listbox rows="7"
+				model="@load(ovm.cotizacionesConProductos)"
+				emptyMessage="No hay productos para esta cotización">
+				<listhead>
+					<listheader label="No" width="5%" visible="false" />
+					<listheader label="Clave" width="10%"
+						sort="auto(producto.clave)" />
+					<listheader label="Producto"
+						sort="auto(proveedor.nombre)" />
+					<listheader label="Partida generica" width="20%"
+						sort="auto(requisicionProducto.cofiaPartidaGenerica.nombre)" />
+
+					<listheader label="Cantidad" width="10%"
+						sort="auto(cantidad)" />
+					<listheader label="U/M" width="10%"
+						sort="auto(producto.unidad.nombre)" />
+					<listheader label="Precio U." width="10%"
+						sort="auto(producto.precio)" />
+					<listheader label="Total." width="10%"
+						sort="auto(requisicionProducto.totalProductoPorUnidad)" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label style="font-size:smaller;"
+								value="${forEachStatus.index + 1}" />
+						</listcell>
+
+						<listcell>
+							<label style="font-size:smaller;"
+								value="@bind(each.producto.clave)" />
+						</listcell>
+						<listcell>
+							<label value="@bind(each.producto.nombre)"
+								style="font-size:smaller;" />
+						</listcell>
+						<listcell>
+							<label
+								value="@bind(each.requisicionProducto.cofiaPartidaGenerica.nombre)"
+								style="font-size:smaller;" />
+						</listcell>
+						<listcell>
+							<label
+								value="@bind(each.requisicionProducto.cantidad)"
+								style="font-size:smaller;" />
+						</listcell>
+						<listcell>
+							<label
+								value="@bind(each.producto.unidad.nombre)"
+								style="font-size:smaller;" />
+						</listcell>
+						<listcell>
+							<doublebox
+								style="font-size:smaller; border:0px" width="100%"
+								readonly="true" format="###,###,###.00"
+								value="@bind(each.producto.precio)" />
+
+						</listcell>
+						<listcell>
+							<doublebox
+								style="font-size:smaller; border:0px" width="100%"
+								readonly="true" format="###,###,###"
+								value="@bind(each.requisicionProducto.totalProductoPorUnidad)" />
+
+						</listcell>
+
+					</listitem>
+				</template>
+
+
+
+
+
+
+				<listfoot style="height:40px">
+					<listfooter span="5" style="text-align:right">
+						<hlayout>
+							<image src="/images/toolbar/products.png" />
+							<label value="Productos: " />
+							<label value="@bind(ovm.numeroProductos)" />
+						</hlayout>
+					</listfooter>
+					<listfooter span="2" style="text-align:right">
+						<hlayout>
+							<image src="/images/toolbar/currency.png" />
+							<doublebox
+								style="font-size:smaller; border:0px" width="100%"
+								readonly="true" format="###,###,###"
+								value="@bind(ovm.precioTotal)" />
+						</hlayout>
+					</listfooter>
+				</listfoot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</listbox>
+		</groupbox>
+
+
+
+
+
+
+
+
+	</window>
+</zk>

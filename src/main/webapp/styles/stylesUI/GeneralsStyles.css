@@ -1,0 +1,1377 @@
+@CHARSET "ISO-8859-1";
+body
+{
+}
+.contentPage
+{	
+	margin-left: 20px;	
+}
+
+.lineSeparator
+{
+	border-bottom-style:solid;
+	border-bottom-color:white;
+	border-bottom-width:2px;
+	clear:both;
+	margin-top:20px;
+	margin-bottom:20px;
+	height: 2px;
+	width: 98%;
+}
+	.lineGray
+	{
+		border-bottom-color: #E6E6E6 !important;
+	}
+	.textoAzul
+	{
+		color:#4CA8E6;
+	}
+	.elementBlock
+	{
+		display: block;
+	}
+	.txtNegritas
+	{
+		font-weight: bold;
+	}
+	.txtOrange
+	{
+		
+	}
+/*------------------------------*/
+	/*Estilo y formato de los elementos CheckBox*/
+/*------------------------------*/
+.chk label
+{
+		
+}
+/*------------------------------*/
+	/*Estilo para el boton flotante a la derecha*/
+/*------------------------------*/
+.btnFloatR	
+{
+	float:right; 
+	margin-right:10px;
+	margin-bottom: 20px;
+	margin-top: 8px;	
+}
+/*------------------------------*/
+	/*Linea vertical divisoria de secciones*/
+/*------------------------------*/
+.lineaVerticalGris
+{	
+	border-color: gray !important;
+	border-width: 1px;	
+}
+/*------------------------------*/
+		/*AgregarElementos*/
+/*------------------------------*/
+.btnAgregarDatos
+{	
+	color: blue !important;
+	font-size: 10px !important;
+	margin-top:5px;
+	display: block;
+}
+	.btnAgregarDatos img
+	{
+		margin-right: 10px;
+	}
+/*------------------------------*/
+		/*Titulos*/
+/*------------------------------*/
+.seccionTitulo
+{
+	background-color: transparent;
+	margin-top: 10px;
+}
+	.textoTitulo
+	{
+		font-weight:bolder;
+		font-size: 18px;
+		margin-left:2px;		
+	}
+	 	.txtSubTitulo.btnSubTitulo
+		{
+			border-style: none;
+			background-color: transparent !important;			
+			margin: 0px;
+			padding:0px;
+		}		
+	.txtSubTitulo
+	{
+		color: #ED8B34;
+		display:block;
+		font-weight: bolder;
+		font-size:17px !important;		
+		margin-top: 10px;
+		margin-bottom: 5px;		
+	}			
+	.txtInformativo, 
+	.chk label,
+	.txtOrange	
+	{
+		color:#636161;
+		font-size: 12px;
+		font-family: sans-serif;		
+	}
+	.txtOrange
+	{
+		color: #ED8B34 !important;
+	}
+
+/*------------------------------*/
+		/*Mensaje de indicacion Naranja y Gris*/
+/*------------------------------*/
+	.txtGrayIndication, .txtOrangeIndicacion 
+	{
+		font-size: 10px;
+	}
+	.txtOrangeIndicacion
+	{				
+		color:#ED8B34;			
+	}
+	.txtGrayIndication
+	{
+		color:gray;
+	}
+/*------------------------------*/
+		/*Estilo para cajas de texto (Perfil)*/		
+/*------------------------------*/
+	.cajaTexto	
+	{		
+		border-radius:5px;
+		background-image:url("../../images/UI/workspaceArea/txtFormularios.png");
+		background-repeat:repeat !important;
+		border-style:none;	
+		
+		font-size:11px;
+		padding-left:5px;
+	}
+		.cajaTexto:FOCUS
+		{
+			color: orange;
+		}
+/*------------------------------*/
+		/*Estilo para cajas de texto (Perfil)*/
+/*------------------------------*/
+.btnGray
+{
+	/*background-image:url("../../images/UI/workspaceArea/");*/
+	background-color:#878787;
+	color: white;	
+	height: 30px !important;
+	padding-left: 5px !important;
+	padding-right: 5px !important;	
+}
+/*------------------------------*/
+		/*Estilo para los elementos de tipo PopUp*/
+/*------------------------------*/
+.popUp
+{	
+	background-color: orange !important;
+	color: white !important;	
+}
+/*------------------------------*/
+		/*Estilo para los botones Tipo : input type=file*/		
+/*------------------------------*/	
+	.fUpload .btnFUp /*Input exáminar - se convierte transparente*/
+	{
+		filter:Alpha(Opacity=0);	
+		opacity:0;			
+	}
+/*------------------------------*/
+		/*Estilo para los controles de tipo ComboBox*/		
+/*------------------------------*/	
+.vlyListaCmbx .z-combobox,
+.z-combobox
+{
+	background-image:url("../../images/UI/workspaceArea/txtFormularios.png") !important;	
+	margin-top:4px;
+	
+	height: 12px;
+	width: 145px !important;
+}
+	.vlyListaCmbx .z-combobox-inp,
+	.z-combobox-inp
+	{	
+		background-image:url("../../images/UI/workspaceArea/txtFormularios.png") !important;
+		background-color: transparent;
+		border-style: none;
+		
+		font-family:sans-serif;
+		font-size:10px;
+			
+		height: 12px;
+		width: 120px !important; 	
+	}
+		.z-combobox-btn
+		{
+			/*background-color: lime !important;*/
+			background-image: url("../../images/UI/down.png") !important;
+			background-repeat:no-repeat !important;
+			background-position:center !important;
+			margin-top:4px;
+			height: 12px !important;
+		}
+.z-combobox-pp
+{
+/*background-color: orange !important;*/		
+	width: auto !important;
+}
+/*NOTA: Para determinar una distancia con su antecesor*/
+.txtLocalidad
+{
+	margin-top: 4px;	
+}
+/*------------------------------*/
+		/*Sección de edición de combo teléfonos*/		
+/*------------------------------*/
+.cmbTelefono.z-combobox
+{		
+	margin-top: 0px;
+	margin-right:5px;
+	height: 20px !important;
+	width: 60px !important;	
+}
+	.cmbTelefono.z-combobox .z-combobox-inp
+	{	
+		border-radius:5px;
+		height: 15px !important;
+		width: 40px !important;	
+	}
+	.cmbTelefono.z-combobox .z-combobox-btn
+	{
+		height: 15px !important;
+	}	
+		.imgOpcion img
+		{		
+			margin-top: 5px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+/*------------------------------*/
+		/*Bordes del contorno en los contenedores de grid view*/		
+/*------------------------------*/
+.bordesGv
+{
+	border-style:solid;
+	border-color:gray;
+	border-width:thin;
+}
+/*------------------------------*/
+		/*Estilo para la visualización del contenedor de los Grid y sus columnas		
+/*------------------------------*/
+.contentGvReportes, .contentGvConceptos, .contentGvMonedas
+{
+	overflow:auto; 
+	width:518px;
+}
+	tr.z-column 
+	{										
+		white-space: normal !important;
+		overflow: visible !important;
+		min-width: 50px !important;
+		width: auto !important;			
+	}
+		div.z-column-cnt
+		{				
+			font-size:10px;
+			font-variant:small-caps;
+			padding: 0px !important;
+			text-align: center;					
+		} 
+
+/**************************************************************************************************************/
+/*#-----------------------------#*/
+		/*PAGINA: DatosPerfil*/
+/*#-----------------------------#*/
+.vlyTelefonos
+{
+	margin-top: 20px;		
+}
+	
+	.labelDescripcion 
+	{
+		font-size: 11px;
+		color: #525050;	
+	}
+	.vlyPassName .txtCampo, .txtCampo 
+	{	
+		color:#525050;				
+		height:13px;
+		width: 300px;			
+	}
+	.vlyPassName .z-hlayout-inner:first-child
+	{
+		width: 150px !important;
+	}
+	.vlyPassName .txtCampo.campoLabel 
+	{	
+		width: 150px;
+			
+	}
+
+.vlyImagenUsuario,
+.vlyImagenNegocio
+{
+	/*background-color: red;*/	
+	display: inline !important;
+	text-align: center;
+}
+/*Definiendo la altura de las cajas de texto*/
+.vlyTelefonos .cajaTexto,
+.vlyCorreosPerfil .cajaTexto
+{
+	height: 20px !important;		
+}
+.vlyCorreosPerfil
+{	
+	margin-top: 20px;	
+}
+	.vlyCorreosPerfil .btnM
+	{
+		margin-left: 5px;
+	}
+	.vlyCorreosPerfil .txtCampo
+	{
+		width: 305px;
+	}
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-agregarNuevoNegocio.zul 
+		-reutilizada en la página: configurarCuentaNegocio.zul
+		*/
+/*#-----------------------------#*/
+.btnExaminar
+{
+	height: 15px !important;
+	margin-top: 4px;	
+	margin-left: 10px;				
+}
+.txtMultilinea
+{
+	background-color:transparent;
+	width: 97% !important;		 
+}
+.txtBordeGris
+{
+	border-style: solid;
+	border-width: thin;
+	border-color: gray;	
+}
+.hlyUploadCSD
+{
+	margin-top: 15px !important;	
+}
+.vlyListaCmbx
+{
+	margin-left: 50px;	
+}
+/*NOTA: Definición de dimensiones de los botones de tipo fileUpload*/
+.pagAgregarNuevoNegocio .fUpload,
+.pagConfigurarCuentaNegocio .fUpload,  /*!!!!MODIFICAR IIMAGEN CON TEXTOS ADECUADOS (cargar imagen -> imagen negocio)!!!!!*/
+.divContentCenter.pagePaso2 .fUpload
+{
+		background-image:url("../../images/imageCompra.png");		
+		margin-top:2px;			
+}
+.pagAgregarNuevoNegocio .fUpload,
+.pagAgregarNuevoNegocio .fUpload .btnFUp,
+.pagConfigurarCuentaNegocio .fUpload,
+.pagConfigurarCuentaNegocio .fUpload .btnFUp,
+.divContentCenter.pagePaso2 .fUpload,
+.divContentCenter.pagePaso2 .fUpload .btnFUp
+{		
+	width: 70px;
+	height: 15px;
+}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-configurarCuentaNegocio.zul 		
+		*/
+/*#-----------------------------#*/
+.pagConfigurarCuentaNegocio .txtSubTitulo
+{	
+	cursor: pointer;	
+}
+.z-groupbox-hr, .z-groupbox-cnt 
+{
+	border-style: none !important;	
+}
+/*NOTA: flecha que indica el desplazamiento del groupbox*/
+.pagConfigurarCuentaNegocio .txtSubTitulo
+{
+	position:relative;
+}
+.z-groupbox-colpsd .imgFlecha
+{
+	background-image: url("../../images/UI/workspaceArea/flecha-derecha.png");	
+}
+.imgFlecha
+{	
+	background-image: url("../../images/UI/navigationArea/flecha-abajo.png");
+	background-repeat: no-repeat;
+	background-position: center;	
+	background-color:transparent;	
+	position:absolute; 
+	top:0px;
+	right:5px; 
+	height:20px; 
+	width:20px; 		
+}
+/*Estilo para la edicion de imagenes de pie en el gv de administración de usuarios*/
+.contentGvUsuarios
+{		
+	clear:both;
+	float:left; 	
+	min-height: 250px !important;
+	max-height: 500px !important;	
+	width: 520px !important;	
+}
+/*#####!!!!!!!!!########*/
+.contentGvUsuarios,
+.contentGvClientes
+{
+	
+	overflow: auto;	
+}
+
+	.parAcotacion
+	{		
+		float: left;
+		height:20px;
+		margin-top:5px;
+		margin-right:20px;		
+	}
+.contentDatosCliente .cajaTexto, 
+.contentDatosCliente .filaTelefono .txtNumTel, 
+.contentDatosCliente .filaTelefono .txtExtTel
+{
+	width:200px !important;
+	height: 15px !important;
+}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-respaldoDeInformacion.zul 		
+		*/
+/*#-----------------------------#*/
+
+.pagRespaldoDeInformacion .z-hlayout
+{	
+	margin-top: 20px;
+}
+	.pagRespaldoDeInformacion .z-hlayout-inner
+	{
+		width: 45%;
+	}
+	/*#Colocación de las imagenes de botones#*/
+	/*NOTA: Definiendo mayor altura para mostrar las etiquetas de la parte inferior*/
+	.pagRespaldoDeInformacion .fUpload
+	{
+		height: 100px;	
+	}
+	.pagRespaldoDeInformacion .fUpload.opcCrear
+	{
+		background-image: url("../../images/UI/off.png")
+	}
+	.pagRespaldoDeInformacion .fUpload.opcRestaurar
+	{
+		background-image: url("../../images/UI/abrir.png")
+	}
+	.pagRespaldoDeInformacion .fUpload.opcCrear,
+	.pagRespaldoDeInformacion .fUpload.opcRestaurar
+	{
+		background-repeat: no-repeat;
+		background-position: top center;
+	}
+		.pagRespaldoDeInformacion .fUpload .btnFUp
+		{
+			margin:0 auto;	
+			height: 80px !important;
+			width: 80px !important;	
+		}
+		.pagRespaldoDeInformacion .fUpload .txtInformativo
+		{			
+			margin-top:5px;
+			text-align: center;		
+		}
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-wReportes.zul 		
+		*/
+/*#-----------------------------#*/
+.hlyCriteriosBusqueda
+{
+	margin-top: 10px;	
+}
+.subtituloConImagen
+{
+	margin-top: 15px;
+}
+.subtituloConImagen .imgSubtitulo,
+.subtituloConImagen .txtImg
+{
+	display: inline;
+	margin-right: 15px;
+}
+/*Seccion de criterios de búsqueda*/
+.hlyCriteriosBusqueda .col1,
+.hlyCriteriosBusqueda .col2 
+{	
+	width:250px !important;
+}
+	/*Estilos definidos para los elementos de tipo checkBox*/
+	.col1 .z-vlayout-inner:last-child,
+	.col2 .z-vlayout-inner:last-child
+	{		
+		margin-top: 12px;
+	}	
+		.txtMetodoPago.z-combobox
+		{			
+			height: 15px !important;
+			width: 200px !important;
+		}
+		.txtMetodoPago .z-combobox-inp
+		{
+			height: 12px;
+			width: 200px !important;
+		}
+	.hlyCriteriosBusqueda .col2 .btnM,
+	.pagReportes .btnM 	
+	{
+		height: 15px !important;
+		margin-top: 2px;
+	}							
+		.col2 .lblFecha
+		{							
+			padding-top: 10px;
+			vertical-align: middle;					
+		}
+.contentGvReportes
+{
+	min-height:400px;	
+}
+	.contentGvReportes div.z-grid
+	{
+		min-width: 800px;
+		overflow:visible; 
+	}
+	.contentColumnsGv
+	{	
+					
+	}		
+.contentBtnPdfExcel
+{	
+	margin-top: 15px;	
+}	
+	.btnPDF,
+	.btnExcel
+	{
+		color:white;
+		height: 25px !important;
+		font-size: 11px;
+		margin-right: 5px;				
+		width: 60px;				
+	}
+	.btnPDF
+	{		
+		background-image: url("../../images/UI/pdf.png");
+	}
+	.btnExcel
+	{
+		background-image: url("../../images/UI/excel.png");
+	}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-wFactura.zul 		
+		*/
+/*#-----------------------------#*/
+	.pagFactura .hlyRBReceptor .z-hlayout-inner
+	{
+		margin-right:30px;		
+	}
+	.hlyDatosDireccion.z-hlayout
+	{				
+		margin-top: 15px;
+	}
+		.hlyDatosDireccion .z-vlayout
+		{					
+			margin-right:18px;
+			padding-bottom: 10px; /*Declaración que permite la visualizacion de los controles inferiores ocultos por el overflow*/				
+		}
+			.hlyDatosDireccion .z-vlayout .cajaTexto
+			{
+				width: 240px;
+			}
+			/*-NOTA: Detalles para especificar las dimensiones de los campos de tipo combobox-*/
+			.hlyDatosDireccion .z-combobox
+			{
+				height:15px;
+				width: 245px !important;
+			}
+			.hlyDatosDireccion .z-combobox-inp
+			{
+				width: 220px !important;
+			}
+	.camposConcepto .cajaTexto
+	{
+		margin-top:10px;
+		margin-right: 10px;
+		height: 20px;
+	}
+		.camposConcepto .txtCantidad 
+		{
+			width: 60px;
+		}
+		.camposConcepto .txtUnidad
+		{
+			width: 40px;
+		}
+		.camposConcepto .txtDescripcion
+		{
+			width: 250px;
+		}
+		.camposConcepto .txtValorUnitario{ width: 100px;}
+		
+	/*NOTA: Estilo para el Contenedor y el Grid de la página*/
+	.contentGvConceptos
+	{			
+		clear: both;
+		min-height: 150px;
+	}
+	.txtIva
+	{
+		height: 20px;
+		width: 50px;
+	}
+	.btnVerde
+	{
+		border-radius:15px; 
+		background-color:Green;	
+		color:White; 		
+		font-size: 14pt;
+		height: 30px !important;
+		width: 150px;
+		
+		text-shadow:1px 1px 2px white;
+	}
+	/*NOTA: Estilo para la lista de precios e importes */
+	.hlyImportes
+	{			
+		float:right;
+		margin-top:40px;
+		margin-right:10px;
+		margin-bottom:20px;		
+		width: 280px;
+	}
+		.txtTotalFactura
+		{
+			font-weight: bold;
+			font-size: 14pt;			
+		}	
+	/*NOTA: Edición de las propidades del Gv Conceptos*/
+	.gvConceptos div.z-column-cnt,
+	.pieGvConceptos .cantConceptos
+	{
+		color: white !important;
+		font-weight: bold;
+		text-align: left;			
+	}
+	.gvConceptos .z-grid-header
+	{		
+		width: 518px !important;
+	}	
+		.gvConceptos .z-grid-header tr.z-columns,
+		.gvConceptos .z-grid-header tr.z-auxhead
+		.gvConceptos td
+		{
+			background-image: none !important;
+			background-color: gray !important;					
+		}				
+	.pieGvConceptos
+	{
+		background-color: gray;
+		
+		padding-left:5px;
+		height:20px;
+		width: 515px;
+	}
+		
+/*#-----------------------------#*/
+		/*CONTROLES COMUNES EN LA SECCIÓN FACTURACIÓN: 
+		-- 		
+		*/
+/*#-----------------------------#*/
+
+/*
+	Sección:
+	AGREGAR CONCEPTO
+*/
+
+.listaElementosConfiguracion
+{		
+	clear: both;	
+	overflow:auto;
+	padding-top: 10px;
+	padding-left: 10px;	
+}
+	.listaElementosConfiguracion .textoAzul
+	{
+		display:block;		
+	}
+
+.conceptoImpuestosRetenidos,
+.conceptoInformacionAduanera, 
+.conceptoInformacionAdicional
+{
+	margin-top: 20px !important;
+}
+	.nombreSeccion
+	{		
+		font-size: 12pt !important;		
+	}
+/*Impuestos Trasladados*/
+.conceptoImpuestosTrasladados
+{
+	margin-top: 20px;
+}
+	.cajaTexto.txtIvaExcentoCero
+	{
+		width: 60px;
+	}
+/*Impuestos Retenidos*/
+.conceptoImpuestosRetenidos
+{
+	clear: both;
+	padding-top: 15px;	
+}
+	.contentParCampos
+	{		
+		/*display:inline-block;*/	
+		float:left;
+		margin-left:5px;	
+		height:40px;		
+		width: 260px;
+		
+	}
+		.contentParCampos .lbl,
+		.contentParCampos .cajaTexto		 
+		{		
+			margin-left: 4px;				
+		}
+		.contentParCampos .lbl
+		{				
+		}
+		.contentParCampos .cajaTexto
+		{
+		}		
+	.conceptoImpuestosRetenidos .cajaTexto,
+	.conceptoImpuestosTrasladados .cajaTexto
+	{
+		width: 60px;
+	}
+		/*Información Aduanera -- .seccionInformacionAduanera*/
+.conceptoInformacionAduanera,
+.conceptoInformacionAdicional, 
+.conceptoVerPartes
+{	
+	clear:both;
+	float: left;
+	margin-top: 10px;		
+}
+	.txtNumeroAduanera
+	{}
+	.txtFechaAduanera
+	{
+		width: 70px;	
+	}
+	.txtAduana
+	{
+		width: 275px;
+	}
+/* Información adicional */
+	.txtInfoAdicional
+	{		
+		min-height:100px;
+		max-height:200px;
+		min-width:510px;
+		max-width: 510px;		
+	}
+/*Ver partes del concepto*/
+.conceptoVerPartes
+{		
+	width:100%;
+}	
+/*
+	Sección:
+	DETALLES DE LA FACTURA
+*/	
+
+/*Sección Descuento*/
+.contentDFDescuento .cajaTexto
+{
+	height: 20px;
+}
+	.contentDFDescuento .celda2
+	{
+		margin-left: 25px;
+	}
+	.contentDFDescuento .txtDescuento
+	{
+		width: 70px;
+	}
+	.contentDFDescuento .txtMotivoDescuento
+	{
+		width: 250px;
+	}
+/*Sección Orden de compra*/
+.contentDFOrdenCompra .btnGray
+{
+	height:20px !important;	
+}
+
+	.contenedorOrdenesCompra
+	{
+		margin-top:15px;		
+		height:180px;
+		width: 299px;
+	}
+		.tituloOrdenesCompra, .pieOrdenesCompra
+		{			
+			background-color: gray;
+			height: 18px;
+			
+		}
+			.lblTitulo, .lblPie
+			{
+				color: white;
+				font-weight: bold;		
+			}
+			.lblTitulo
+			{
+				margin-left: 30%;
+			}
+		.listaOrdenesCompra
+		{
+			background-color:#e0e0e0;
+			height: 144px;
+			overflow: auto;
+		}
+			.elementoOrdenCompra
+			{
+				display:block;
+				padding-left: 5px;
+			}
+/*Sección campos adicionales*/			
+.contentDFCamposAdicionales
+{
+	margin-top: 20px;		
+}
+	.contentDFCamposAdicionales .columna1,
+	.contentDFCamposAdicionales .columna2
+	{
+		font-size:12px !important; 
+	}
+	.contentDFCamposAdicionales .hlayout > div
+	{		
+		overflow: auto;
+	}
+	.contentDFCamposAdicionales .hlayout > div + div
+	{
+		margin-left:5px;
+	}
+	.contentDFCamposAdicionales .z-hlayout-inner
+	{		
+		width: 48%;
+	}		
+		.contentListaCamposAdicionales .txtCampo,
+		.contentListaCamposAdicionales .txtValor
+		{
+			margin-left:5px;
+			margin-top:2px;
+			width: 150px;
+		}
+/*Sección Etiquetas*/
+.contentDFEtiquetas
+{
+	float:left;	
+	clear: both;
+	margin:25px 0;	
+	width: 100%;
+}
+	.contentListaEtiquetas
+	{
+		overflow:auto;
+	}
+	.contentDFEtiquetas .parCampos
+	{	
+		clear: both;
+		float: none;		
+		padding-top: 10px !important;		
+	}
+	.contentDFEtiquetas .txtInformativo
+	{
+		float: right;
+		margin-right: 10px;
+	}
+	.contentDFEtiquetas .txtEtiqueta
+	{
+		float:right;
+		margin-right:20px;
+		width: 250px;			
+	}
+/*Sección Leyendas*/
+.contentDFLeyendas
+{
+	margin-top: 30px;		
+}
+	.contentListaLeyendas .parCampos
+	{
+		margin-top: 20px;
+	}
+	.contentListaLeyendas .txtInformativo
+	{
+		display: block;
+	}
+	.contentListaLeyendas .cajaTexto,	
+	{
+		height: 50px;
+		max-height:50px;
+		min-height:50px;
+		width: 520px;
+		max-width: 520px;
+		min-width: 520px;		
+	}
+
+/*Sección Firmas*/
+.contentDFFirmas
+{
+	margin-top: 30px;	
+}	
+	.contentFirma
+	{		
+		height:200px;
+		width:250px;
+		float: left;
+		margin-right: 20px;
+		margin-bottom: 40px;
+	}	
+	.contentFirma .cajaTexto
+	{
+		float: right;
+		margin-right: 10px;
+		width: 180px;
+	}
+	.contentFirma .nombreFirma
+	{	
+		font-size:15px;
+		font-weight: bold;
+	}	
+	.contentFirma .txtInformativo
+	{
+		float: left;		
+	}
+		.tituloFirma, .nombreFirma, .puestoFirma, .areaFirma
+		{			
+			float: left;
+			clear: both;
+			margin-top:10px;
+			width: 250px;			
+		}
+		.lineaFirma
+		{
+			float:left;			
+			height: 50px;
+			width: 250px;
+			border-bottom-color: blue;
+			border-bottom-width: thin;
+			border-bottom-style: solid;
+		}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-wReciboDonataria.zul 		
+		*/
+/*#-----------------------------#*/
+.seccionDonataria .cajaTexto
+{
+	height: 20px;
+	width: 254px;
+}
+.seccionDonataria .txtLeyendaDonataria
+{	
+	text-align:justify;
+	font-size:8pt;
+	padding:10px;	
+	min-height: 80px;
+	max-height: 120px;
+	height: 80px;
+	min-width: 520px;
+	max-width: 520px;
+	width: 520px;	
+}
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-wCartaPorte.zul 		
+		*/
+/*#-----------------------------#*/
+.seccionInfoTransporte .cajaTexto
+{
+	width: 254px;
+}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-wConfiguracion.zul 		
+		*/
+/*#-----------------------------#*/
+
+.vlyCorreoElectronico .z-vlayout-inner
+{
+	/*background-color:gray;*/
+	margin-bottom:2px;
+	padding-top:5px;
+	width: 500px;	
+}
+.seccionCatalogoMonedas
+{	
+}
+	.contentPageWConfiguration .btnGray
+	{
+		height: 18px !important;
+		padding: 1px !important;
+				
+	}
+	/*Sección monedas*/
+	.vlyCorreoElectronico .contenidoMail,
+	.txtContenidoLeyenda
+	{	
+		text-align:justify;
+		font-size:8pt;
+		padding:10px;
+		
+		min-height: 40px;
+		min-width: 500px;
+		max-width: 500px;
+		width: 500px;				
+	}
+	.vlyCorreoElectronico .contenidoMail
+	{
+		min-height: 40px;
+		max-height: 50px;
+		height: 40px;		
+	}
+	.txtCampo.txtClave
+	{
+		width: 50px;	
+	}
+	.seccionCatalogoMonedas .txtCampo.txtNombre
+	{
+		width: 235px;		
+	}
+	.txtCampo.txtCambio
+	{
+		width: 90px;
+		
+	}
+	.seccionCatalogoMonedas .btnGray
+	{
+		margin-top: 0px !important;
+	}
+	.divContenTxt 
+	{		
+	}
+		.divContenTxt .cajaTexto
+		{
+			width: 194px !important;
+		}
+	
+	/*-- Seccion del gv --*/
+	.contentGvMonedas
+	{		
+		margin-top:20px;
+		min-height: 150px;
+	}	
+	.contentGvMonedas div.z-grid-header
+	{
+		width: 100% !important;
+	}
+	
+	.barraPieGv
+	{
+		background-image:url("../../images/UI/workspaceArea/txtFormularios.png");
+		background-repeat:repeat !important;
+		text-align:right;
+		width: 520px;
+	}
+	.contentGvLeyendas
+	{
+		overflow:auto;
+		height: 300px;
+		padding-right:2px !important;
+		width: 520px;
+	}
+	.contentGvLeyendas .colLeyenda
+	{
+		width: 410px !important;
+	}
+	.contentGvLeyendas .rowLayenda
+	{								
+	}		
+	.contentGvLeyendas .colTitulo
+	{
+		width: 100px !important;
+	}
+	/*Seccion Manejo Decimales*/	
+	.noDecimales.z-combobox
+	{
+		width: 105px !important;
+		height: 17px !important;
+	}
+		.noDecimales .z-combobox-inp
+		{
+			width: 80px !important;
+			height: 12px !important;
+		}
+
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-clientes.zul 		
+		*/
+/*#-----------------------------#*/	
+
+.contentPageClientes
+{}
+	.contentPageClientes .btnImagen
+	{
+		border-style:solid;
+		border-color:black;
+		border-width:thin;				
+		margin:0;
+		padding:0;
+		height:25px;
+		width:40px;
+	}	
+	.contentPageClientes .seccionBuscar
+	{		
+		background-color:yellow;
+		margin-top:20px; 
+		position:relative; 				
+	}
+		.seccionBuscar .btnExcel
+		{
+			height: 20px !important;
+		}
+	.contentGvClientes
+	{
+		height:300px;
+		width: 520px;
+	}
+	.contentPageClientes .barraPieGv
+	{
+		text-align: left !important;
+	}
+	
+	.txtSubtitulo2
+	{		
+		color: #ED8B34;
+		display: block;
+		margin-top: 10px;
+		margin-bottom:10px;
+	}	
+	.seccionDatosFiscales, .seccionDatosPersonales
+	{
+		margin-bottom:15px; 
+		margin-top:15px;	
+	}
+	.seccionDatosPersonales .txtCampo
+	{
+		margin-bottom: 5px !important;
+	}	
+	/*Seccion Dirección Envio*/
+	.seccionDireccionEnvio
+	{
+		margin-top: 40px;
+	}
+	.seccionDireccionEnvio .txtInformativo
+	{
+		margin-right:50px;
+	}	
+	.hlyBtnsGuardarCancelar
+	{
+		float:right;
+		margin-top:30px;
+		width: 250px;
+	}
+		.hlyBtnsGuardarCancelar .btn
+		{
+			border-style: none;
+			color:white;
+			height:30px;
+			width: 100px;
+		}
+		.hlyBtnsGuardarCancelar .btnGuardar
+		{
+			background-color: #556B2F;
+		}
+		.hlyBtnsGuardarCancelar .btnCancelar
+		{
+			background-color: #808080;
+		}
+		
+/* --- --- Sección de estadisticas cliente --- --- */
+	.colComprasTotales,
+	.colNotas,
+	.colFacturas,
+	.colCompraPromedio
+	{
+		display:block;
+		text-align: center;		
+	}	
+		.colComprasTotales, .colCompraPromedio
+		{
+			
+			width:180px;
+		}
+		.colNotas , .colFacturas
+		{		
+			width: 80px;
+		}
+	.contentBtnsPeriodo
+	{
+		margin-left: 20px;	
+		margin-top: 10px;
+		margin-bottom:10px;
+	}		
+		.btnPeriodos
+		{
+			color:#72add9;		
+		 	background-color: transparent;
+		 	border-style:none;
+		 	font-size:12px;
+		 	font-weight:bolder;
+		 	width: 50px;
+		 	height: 25px;
+		}
+		.btnPeriodoSelected
+		{
+			background-color: #72add9;
+			color:white;
+			border-radius:15px;
+		}		
+	.gridMasComprados
+	{		
+	}
+	
+/*#-----------------------------#*/
+		/*PAGINA: 
+		-Estilo elementos emergentes (PopUp)	
+		*/
+/*#-----------------------------#*/
+
+/* Pag - ConfigurarCuentaNegocio*/
+.z-modal-mask
+{
+	background-color: #030405;	
+}
+.popUpWindow
+{
+	background-color: #E6E6E6;	
+	padding:0px 10px;	
+	border-radius:4px;	
+	position: relative;	
+}
+	.contentBtnLimpiar .z-hlayout-inner,
+	.contentLeyendas .z-hlayout-inner
+	{		
+		width: 260px !important;
+	}	
+		.contentBtnLimpiar .z-hlayout-inner + .z-hlayout-inner
+		{
+			padding-top: 5px !important; 
+		}
+		.contentLeyendas .z-hlayout-inner
+		{
+			margin-top: 20px !important;
+			margin-bottom: 10px !important;
+		}
+		
+	.popUpWindow-move-ghost
+	{		
+		background-color:#f4f4f4;
+		opacity:0.5;		
+	}
+	.popUpWindow-header 
+	{		
+		color:#1D2122;		
+	}
+	.txtTitlePopUp
+	{
+		font-size: 16px !important;
+		font-weight: bold;
+		color: #1D2122;
+		padding-top: 8px;		
+	}		
+		.popUpWindow-icon
+		{
+			background-color:red;
+			background-image: url("../../images/close.png");
+			position:absolute;
+			right:10px;
+			width: 17px;
+			height: 17px;
+		}
+		
+	.vlyContentGrid
+	{
+		margin-top:20px !important;
+	}	
+		
+		.vlyContentGrid .gridGiros
+		{			
+			height: 380px !important;
+		}
+.chkOpcionGiro,
+.rdOpcionGiro
+{
+	margin-left: 40%;	
+}
+
+/*PopUp dentro de las ventanas de comprobante*/
+.addParte .camposConcepto .z-vlayout-inner
+{
+	margin-right: 15px;
+}
+.addParte .contentParBtns
+{
+	margin-top: 15px;	
+}
+
+.contentLblsDetalle
+{	
+	margin-top:10px;
+	margin-right: 15px;
+	
+}
+
+/*----Estilo para la pagina exportar cliente--*/
+.contentBuscarRuta
+{	
+	height: 400px;
+}
+
+/*--- PAGE # Wizard de configuración ---*/
+
+.lblCer,
+.lblFechaCad
+{
+	font-size: 10pt !important;	
+}
+
+.spacerLabel{
+	width: 100px;
+}

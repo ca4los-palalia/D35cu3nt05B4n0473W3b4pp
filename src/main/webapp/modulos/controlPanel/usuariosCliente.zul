@@ -1,0 +1,198 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.cplsystems.stock.app.vm.controlpanel.UsuariosClientesVM')"
+		form="@id('fx') @save(vm, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.controlpanel.utils.UsuarioClientesValidator')"
+		validationMessages="@id('vmsgs')">
+		<vlayout style="padding-top:15px">
+			<grid>
+				<columns>
+					<column />
+					<column width="35%" zclass="shadowMenuActions" />
+				</columns>
+				<rows>
+					<row zclass="shadowMenuActions">
+						<div style="margin:5px">
+							<button label="Panel de control > Usuarios"
+								image="/images/toolbar/home32.png"
+								zclass="panelInfoItemMenuTitle" />
+						</div>
+						<hlayout style="text-align:right">
+							<button image="/images/toolbar/newDoc.png"
+								sclass="web_button" onClick="@command('nevoUsuarioCliente')"
+								tooltiptext="Registrar nuevo usuario para esta organización" />
+							<button image="/images/toolbar/update.png"
+								sclass="web_button" onClick="@command('saveChanges')"
+								tooltiptext="Guardar cambios" />
+							<button image="/images/toolbar/delete.png"
+								sclass="web_button" onClick="@command('delete')"
+								tooltiptext="Remover usuario" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+			
+			
+			
+			<groupbox mold="3d">
+				<caption label="Informacion del usuario"
+					image="/images/toolbar/info16.png" />
+				
+				<grid style="border: 0;">
+					<columns>
+						<column width="12%"/>
+						<column/>
+						<column width="12%"/>
+						<column/>
+						<column width="13%"/>
+						<column/>
+					</columns>
+					<rows>
+						<row style="background-color: transparent; border: 0;">
+						
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Nombre" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" maxlength="50"
+								value="@bind(vm.usuarioSeleccionado.persona.nombre)" />
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Apellido Paterno" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" maxlength="50"
+								value="@bind(vm.usuarioSeleccionado.persona.apellidoPaterno)" />
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Apellido Materno" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" maxlength="50"
+								value="@bind(vm.usuarioSeleccionado.persona.apellidoMaterno)" />
+						</row>
+						
+						<row style="background-color: transparent; border: 0;">
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Usuario" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" maxlength="30"
+								value="@bind(vm.usuarioSeleccionado.benutzer)" />
+							
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Clave " />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" type="password" maxlength="30"
+								value="@bind(vm.usuarioSeleccionado.kennwort)" />
+							
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Repetir Clave" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" type="password"
+								value="@bind(vm.usuarioSeleccionado.retypeKennwort)" />
+						</row>
+						
+						<row style="background-color: transparent; border: 0;">
+							<hlayout>
+								<label value="*" style="color:red" />
+								<label value="Email" />
+							</hlayout>
+							<textbox zclass="tBox" width="100%" maxlength="50"
+								value="@bind(vm.usuarioSeleccionado.persona.contacto.email.email)"
+								constraint="/.+@.+\.[a-z]+/: por favor ingrese una dirección de email válida" />
+						</row>
+					</rows>
+				</grid>
+			
+			</groupbox>
+			
+			
+			
+			
+			<groupbox mold="3d">
+				<caption label="Permisos para los módulos"
+					image="/images/toolbar/module16.png" />
+					
+					<grid style="border: 0;">
+						<columns>
+							<column width="22%"/>
+							<column width="22%"/>
+							<column/>
+							<column/>
+						</columns>
+						<rows>
+							<row style="background-color: transparent; border: 0;">
+								<checkbox label="Requisiciones"
+									checked="@bind(vm.privilegioRequision)"
+									onCheck="@command('addRequisicionPrivilege')"/>
+									
+								<checkbox label="Concentrados"
+									checked="@bind(vm.privilegioConcentrado)"
+									onCheck="@command('addConcentradosPrivilege')"/>
+									
+								<checkbox label="Cotizaciones y Autorizaciones"
+									checked="@bind(vm.privilegioCotizacionAutorizacion)"
+									onCheck="@command('addCotizaAutorizaPrivilege')"/>
+								
+								<checkbox label="Órdenes de compra"
+									checked="@bind(vm.privilegioOrdenCompra)"
+									onCheck="@command('addOrdenCompraPrivilege')"/>
+							</row>
+							
+						</rows>
+					</grid>
+					
+			</groupbox>
+			
+			
+
+			<listbox model="@load(vm.usuarios)"
+				selectedItem="@bind(vm.usuarioSeleccionado)"
+				emptyMessage="No hay usuarios registrados" mold="paging"
+				pageSize="6" height="280px">
+				<listhead>
+					<listheader label="Nombre Completo" align="center"
+						width="45%" />
+					<listheader label="Email" align="center"
+						width="35%" />
+					<listheader label="Registro" align="center"
+						width="20%" />
+					<listheader label="Privilegios" align="center"
+						width="15%" />
+				</listhead>
+				<template name="model" var="usuario">
+					<listitem>
+						<listcell
+							onClick="@command('prepareUsuarioForEdition', index=usuarioStatus.index)"
+							label="${usuario.persona.nombreCompleto}" />
+						<listcell
+							onClick="@command('prepareUsuarioForEdition', index=usuarioStatus.index)"
+							label="${usuario.persona.contacto.email.email}" />
+						<listcell
+							onClick="@command('prepareUsuarioForEdition', index=usuarioStatus.index)">
+							<label value="${usuario.fechaCaducidad}" />
+						</listcell>
+						<listcell
+							onClick="@command('prepareUsuarioForEdition', index=usuarioStatus.index)">
+							<listbox model="@load(usuario.privilegios)"
+								emptyMessage="Sin privilegios" height="80px">
+								<template name="model"
+									var="privilegio">
+									<listitem>
+										<listcell
+											style="text-align:center">
+											<button disabled="true"
+												sclass="privilege-button" image="@load(privilegio.icono)" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</vlayout>
+	</div>
+</zk>

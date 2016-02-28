@@ -1,0 +1,104 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.categoria.BellezaVM')">
+
+
+
+
+
+
+
+		<hlayout spacing="0" height="100%">
+			<listbox sclass="employee-list" vflex="true" hflex="1"
+				model="@load(vm.comercios)" selectedItem="@bind(vm.comercio)"
+				onSelect="@command('comercioSeleccionado')">
+				<auxhead>
+					<auxheader class="topic">
+						Lista de comercios
+					</auxheader>
+				</auxhead>
+				<listhead>
+					<listheader label="Nombre" align="center" />
+				</listhead>
+				<template name="model" var="item">
+					<listitem>
+						<listcell label="@load(item.nombre)" />
+					</listitem>
+				</template>
+
+			</listbox>
+			<window sclass="card-pre" title="Descripcion" hflex="1"
+				vflex="true" border="normal">
+				<div sclass="card">
+					<image sclass="logo" src="@load(vm.comercio.logo)" />
+					<vlayout sclass="title">
+						<label sclass="name"
+							value="@load(vm.comercio.descripcion)" />
+						<hlayout sclass="dept">
+							<label
+								value="@load(vm.comercio.direccion.calle)" />
+							<label
+								value="@load(vm.comercio.direccion.numExt)" />
+							<label
+								value="@load(vm.comercio.direccion.colonia)" />
+							<label
+								value="@load(vm.comercio.direccion.estado.nombre)" />
+							<label
+								value="@load(vm.comercio.contacto.telefono.numero)" />
+							<label
+								value="@load(vm.comercio.contacto.email.email)" />
+						</hlayout>
+					</vlayout>
+				</div>
+			</window>
+		</hlayout>
+		<grid>
+			<auxhead>
+				<auxheader colspan="5" class="topic">
+					Edit Data
+				</auxheader>
+			</auxhead>
+			<columns>
+				<column label="Nombre"/>
+				<column label="Descripcion"/>
+				<column label="Calle"/>
+				<column label="Numero"/>
+				<column label="Colonia"/>
+				<column label="Estado"/>
+				<column label="Telefono"/>
+				<column label="e-mail"/>
+			</columns>
+			<rows>
+				<row>
+					<textbox value="@bind(vm.comercio.nombre)"
+						width="95%" />
+					<textbox value="@bind(vm.comercio.descripcion)"
+						width="95%" />
+					<textbox value="@bind(vm.comercio.direccion.calle)"
+						width="95px" />
+					<textbox value="@bind(vm.comercio.direccion.numExt)"
+						width="95px" />
+					<textbox
+						value="@bind(vm.comercio.direccion.colonia)" width="95px" />
+					<combobox model="@load(vm.estados)"
+						selectedItem="@bind(vm.estado.nombre)" width="99%" />
+					<textbox
+						value="@bind(vm.comercio.contacto.telefono.numero)" width="95px" />
+					<textbox
+						value="@bind(vm.comercio.contacto.email.email)" width="95px" />
+				</row>
+			</rows>
+		</grid>
+
+		<image content="@bind(vm.myImage)" height="150px" width="300px" />
+		<button mold="trendy" upload="true"
+			label="Change My Image" onUpload="@command('upload')" />
+
+
+	</window>
+</zk>

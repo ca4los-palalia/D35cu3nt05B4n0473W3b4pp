@@ -1,0 +1,16 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<window apply="org.zkoss.bind.BindComposer"
+		position="center,center" closable="true"
+		action="show: slideDown;hide: slideUp"
+		viewModel="@id('rvm') @init('com.cplsystems.stock.app.vm.requisicion.RequisicionVM')">
+
+
+		<vlayout width="300px">
+			<label value="carlos"></label>
+		</vlayout>
+
+	</window>
+</zk>

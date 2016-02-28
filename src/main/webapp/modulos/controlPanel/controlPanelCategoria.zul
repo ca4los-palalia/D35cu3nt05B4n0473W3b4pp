@@ -1,0 +1,30 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer" height="100%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelCategoriaVM')">
+
+
+
+		<tabbox style="padding:8px" height="100%">
+			<tabs>
+				<tab label="CRUD" />
+				<tab label="Asignar Promociones a categorias"
+					/>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<include
+						src='/modulos/controlPanel/controlPanelCategoriaTabCrud.zul' />
+				</tabpanel>
+				<tabpanel>
+					<include
+						src='/modulos/controlPanel/controlPanelCategoriaTabAsignaciones.zul' />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

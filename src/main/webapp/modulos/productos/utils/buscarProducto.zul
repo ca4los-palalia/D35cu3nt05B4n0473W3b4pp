@@ -1,0 +1,51 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<window apply="org.zkoss.bind.BindComposer"
+		id="productosModalDialog"
+		viewModel="@id('bpvm') @init('com.cplsystems.stock.app.vm.producto.BuscarProductoVM')"
+		width="460px" height="335px" position="center,center"
+		closable="true">
+		<vlayout id="productoDetalles" height="305px">
+			<hlayout>
+				<label value="Clave:" />
+				<textbox zclass="tBox" cols="12" maxlength="14"
+					value="@bind(bpvm.claveProducto)" />
+				<label value="Nombre:" />
+				<textbox zclass="tBox" cols="29" maxlength="32"
+					value="@bind(bpvm.nombreProducto)" />
+				<button image="/images/toolbar/search32.png"
+					onClick="@command('searchItemByKeyOrName')" />
+			</hlayout>
+			<hlayout>
+				<listbox model="@load(bpvm.productos)"
+					selectedItem="@bind(bpvm.productoSeleccionado)"
+					emptyMessage="No hay resultados que mostrar" mold="paging"
+					pageSize="6">
+					<auxhead>
+						<auxheader colspan="4" label="Productos" />
+					</auxhead>
+					<listhead>
+						<listheader label="Clave" align="center" />
+						<listheader label="Nombre" align="center" />
+						<listheader label="Precio" align="center" />
+						<listheader label="Marca" align="center" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="${each.clave}" />
+							<listcell label="${each.nombre}" />
+							<listcell label="${each.precio}" />
+							<listcell label="${each.marca}" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+		<hlayout style="text-align:right">
+			<button label="Cancelar"  onClick="@command('closeDialog')"/>
+			<button label="Aceptar"
+				onClick="@command('transferProduct')" />
+		</hlayout>
+	</window>
+</zk>

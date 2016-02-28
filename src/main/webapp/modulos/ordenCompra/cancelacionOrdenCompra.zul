@@ -1,0 +1,23 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<window id="modalDialog" apply="org.zkoss.bind.BindComposer" mode="modal"
+		width="420px" height="auto" closable="true"
+		viewModel="@id('rvm') @init('com.cplsystems.stock.app.vm.ordencompra.utils.CancelarOrdenCompraVM')">
+
+
+		<vlayout>
+			<hlayout>
+				<label value="Motívo de cancelación para la orden de compra "/>
+				<label value="@bind(rvm.ordenCompra.codigo)"/>
+			</hlayout>
+			
+			<textbox maxlength="100" multiline="true" height="100px" width="100%" value="@bind(rvm.ordenCompra.cancelarDescripcion)"/>
+			<hlayout>
+				<button label="Aceptar" onClick="@command('save')"/>
+				<button label="Cancelar" onClick="@command('discart')"/>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

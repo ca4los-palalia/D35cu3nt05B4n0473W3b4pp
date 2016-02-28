@@ -1,0 +1,498 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<style src="/styles/proveedores/styleProveedor.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.proveedor.ProveedoresVM')">
+
+		<grid style="border:0;">
+			<columns>
+				<column />
+				<column width="402%"/>
+			</columns>
+			<rows>
+				<row style="border:0;">
+					<div>
+					</div>
+					<hlayout style="text-align:right; margin:1px ">
+
+						<button image="/images/toolbar/newDoc.png"
+							sclass="web_button" 
+							onClick="@command('nuevoProveedor')"
+							tooltiptext="Nuevo proveedor" />
+
+						<button image="/images/toolbar/saveOff.png"
+							sclass="web_button" onClick="@command('saveChanges')"
+							tooltiptext="Guardar/actualizar proveedor" />
+
+						<button image="/images/toolbar/delete.png"
+							sclass="web_button" onClick="@command('deleteRecord')"
+							tooltiptext="Eliminar proveedor" />
+							
+						<button image="/images/toolbar/pdf32.png"
+							sclass="web_button" onClick="@command('reporteProveedores')"
+							tooltiptext="Exportar PDF" />
+						
+						<button upload="true"
+							image="/images/toolbar/uploadColor32.png"
+			            	onUpload="@command('onUploadExcel',upEvent=event)" tooltiptext="Importar proveedores desde excel">
+			            </button>
+
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+
+		<separator />
+
+		<vlayout>
+			
+			<groupbox mold="3d" open="false">
+				<caption label="Buscar"
+					image="/images/toolbar/find16x16.png" />
+				
+				
+				<grid style="border: 0;">
+					<columns>
+						<column />
+						<column width="8%" />
+					</columns>
+					<rows>
+						<row
+							style="background-color:transparent; border: 0;">
+							<textbox id="buscador"
+								value="@bind(pvm.buscarProveedor.nombre)" width="100%" />
+	
+							<hlayout style="text-align:center">
+	
+								<button
+									image="/images/toolbar/find16x16.png" zclass="find_button"
+									onClick="@command('performSearch')"
+									tooltiptext="Buscar proveedores" />
+							</hlayout>
+						</row>
+					</rows>
+				</grid>
+				<separator/>
+				<listbox emptyMessage="No se encontro resultado" rows="4"
+					model="@load(pvm.proveedoresLista)"
+					onSelect="@command('obtenerInformacionProveedorBuscado')"
+					selectedItem="@bind(pvm.proveedorSelected)">
+					
+					<listhead>
+						<listheader label="Clave" width="10%" />
+						<listheader label="Nombre" sort="auto" />
+					</listhead>
+					<template name="model" var="proveedor">
+						<listitem>
+							<listcell>
+								<label value="@bind(proveedor.clave)"
+									width="100%" />
+							</listcell>
+							<listcell>
+								<label value="@bind(proveedor.nombre)"
+									width="100%" />
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</groupbox>
+
+			<groupbox mold="3d" open="false">
+				<caption label="Información de proveedor"
+					image="/images/toolbar/info16.png"/>
+			
+
+				<tabbox>
+					<tabs>
+						<tab label="Informacion general" />
+						<tab label="Contacto" />
+						<tab label="Contrato" />
+						<tab label="Cuenta pago" />
+						<tab label="Productos" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<separator />
+							<separator />
+							<separator />
+							<grid style="border: 0;">
+								<columns>
+									<column width="20%" />
+									<column />
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Nombre"
+											style="text-align:right;" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.nombre)" maxlength="25"
+											width="100%" />
+										<label value="Giro" />
+										<combobox model="@bind(pvm.giros)"
+											autocomplete="true"
+											selectedItem="@bind(pvm.proveedorSelected.giro)"
+											width="100%">
+											<template name="model">
+												<comboitem
+													label="@load(each.nombre)" />
+											</template>
+										</combobox>
+										<textbox visible="false"
+											value="@bind(pvm.proveedorSelected.giro.nombre)"
+											maxlength="25" width="100%" />
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="Razon social:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.razonSocial)"
+											maxlength="20" width="100%" />
+										<label value="RFC:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.rfc)" maxlength="13"
+											zclass="upperCase" width="100%" />
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*País:" />
+										<label
+											value="@bind(pvm.proveedorSelected.direccionFiscal.pais.nombre)" />
+	
+										<label value="*Estado:" />
+										<label
+											value="@bind(pvm.proveedorSelected.direccionFiscal.estado.nombre)" />
+	
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="Ciudad:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.direccionFiscal.cuidad)"
+											maxlength="20" width="100%" />
+										<label value="*Municipio:" />
+										<label
+											value="@bind(pvm.proveedorSelected.direccionFiscal.municipio.nombre)" />
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Colonia:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.direccionFiscal.colonia)"
+											maxlength="20" width="100%" />
+										<label value="*Calle:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.direccionFiscal.calle)"
+											maxlength="20" width="100%" />
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Número exterior:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.direccionFiscal.numExt)"
+											maxlength="4" width="100%" />
+										<label value="Número interior:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.direccionFiscal.numInt)"
+											maxlength="4" width="100%" />
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="Código postal:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.direccionFiscal.cp)"
+											maxlength="5" width="100%" />
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Telefono:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.contacto.telefono.numero)"
+											maxlength="10" width="100%"
+											tooltiptext="telefono del proveedor" />
+										<label value="Fax:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.contacto.telefono.fax)"
+											maxlength="10" width="100%" />
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Email:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.contacto.email.email)"
+											maxlength="27" width="100%"
+											constraint="/.+@.+\.[a-z]+/: por favor ingrése una direccion de correo"
+											tooltiptext="email del proveedor" />
+										<label value="Pagina web:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.paginaWeb)" cols="30"
+											maxlength="20" width="100%" />
+									</row>
+								</rows>
+							</grid>
+	
+							<separator />
+							<separator />
+							<separator />
+	
+							<groupbox>
+								<caption sclass="folder formatTitleGroup"
+									label="Comentarios" />
+								<textbox multiline="true"
+									zclass="widthComent"
+									value="@bind(pvm.nuevoProveedor.comentario)" />
+							</groupbox>
+						</tabpanel>
+	
+						<tabpanel>
+	
+							<separator />
+							<separator />
+							<separator />
+	
+							<grid style="border: 0;">
+								<columns>
+									<column width="20%" />
+									<column />
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;"
+										tooltiptext="Apellidos">
+										<label value="*Apellido paterno" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.representanteAteCliente.apellidoPaterno)"
+											maxlength="17" width="100%"
+											tooltiptext="Ap paterno de la persona contacto" />
+										<label value="*Apellido materno" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.representanteAteCliente.apellidoMaterno)"
+											maxlength="17" width="100%"
+											tooltiptext="Ap materno de la persona contacto" />
+									</row>
+								</rows>
+							</grid>
+	
+							<grid style="border: 0;">
+	
+								<columns>
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;" spans="1"
+										tooltiptext="Nombre completo del contacto">
+										<label value="*Nombre" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.representanteAteCliente.nombre)"
+											maxlength="17" width="100%"
+											tooltiptext="Nombre de la persona contacto" />
+									</row>
+								</rows>
+							</grid>
+	
+	
+							<grid style="border: 0;">
+								<columns>
+									<column width="20%" />
+									<column />
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="RFC" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.representanteAteCliente.rfc)"
+											maxlength="13" zclass="upperCase" width="100%" />
+										<label value="CURP:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.representanteAteCliente.curp)"
+											maxlength="18" zclass="upperCase" width="100%" />
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Teléfono" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.contacto.telefono.numero)"
+											maxlength="10" width="100%" />
+										<label value="Extensión:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.contacto.telefono.extension)"
+											maxlength="5" width="100%" />
+									</row>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Email:" />
+										<textbox type="text"
+											value="@bind(pvm.proveedorSelected.contacto.email.email)"
+											maxlength="27" width="100%"
+											constraint="/.+@.+\.[a-z]+/: por favor ingrése una direccion de correo" />
+	
+										<label value="Celular:" />
+										<textbox
+											value="@bind(pvm.proveedorSelected.contacto.telefono.celular)"
+											maxlength="10" width="100%" />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+	
+						<tabpanel>
+							<separator />
+							<separator />
+							<separator />
+							<grid style="border: 0;">
+								<columns>
+									<column width="20%" />
+									<column />
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;"
+										visible="false">
+										<label
+											value="*Dias pagos normales:" />
+										<longbox maxlength="2" width="100%"
+											value="@bind(pvm.contrato.diasPago)" />
+										<label value="Fecha" />
+										<datebox readonly="true"
+											format="yyyy/MM/dd" width="100%" />
+									</row>
+	
+									<row
+										style="background-color:transparent; border: 0;">
+										<label
+											value="*Fecha vigencia inicio:" />
+										<datebox readonly="true"
+											value="@bind(pvm.contratoVigenciaInicio)" format="yyyy/MM/dd"
+											width="100%" />
+										<label value="*Fecha vigencia fin:" />
+										<datebox readonly="true"
+											value="@bind(pvm.contratoVigenciaFin)" format="yyyy/MM/dd"
+											width="100%" />
+									</row>
+	
+								</rows>
+							</grid>
+						</tabpanel>
+	
+						<tabpanel>
+	
+							<separator />
+							<separator />
+							<separator />
+	
+							<grid style="border: 0;">
+								<columns>
+									<column width="20%" />
+									<column />
+									<column width="20%" />
+									<column />
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;">
+										<label value="*Moneda" />
+										<label
+											value="@bind(pvm.monedaSeleccionada.nombre)" />
+	
+										<label value="*Banco" />
+										<label
+											value="@bind(pvm.bancoSeleccionado.nombre)" />
+									</row>
+								</rows>
+							</grid>
+							<grid style="border: 0;">
+	
+								<columns>
+									<column width="20%" />
+									<column></column>
+								</columns>
+								<rows>
+									<row
+										style="background-color:transparent; border: 0;" spans="1">
+										<label value="*Cuenta bancaria:" />
+										<textbox width="100%"
+											value="@bind(pvm.cuentaPago.cuentaBancaria)" maxlength="20" />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+	
+						<tabpanel>
+	
+							<listbox
+								emptyMessage="No se encontro ningun producto" rows="6" id="pro"
+								model="@bind(pvm.proveedorProductos)">
+	
+								<listhead>
+	
+									<listheader label="Clave" align="center"
+										width="15%" />
+									<listheader label="Nombre" />
+								</listhead>
+								<template name="model" var="prodProv">
+									<listitem>
+										<listcell>
+											<label
+												value="@bind(prodProv.producto.clave)" width="100%"
+												sclass="fontSizeContentGrid" />
+										</listcell>
+										<listcell>
+											<label
+												value="@bind(prodProv.producto.nombre)" width="100%"
+												sclass="fontSizeContentGrid" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</tabpanel>
+	
+					</tabpanels>
+				</tabbox>
+
+			</groupbox>
+
+			<groupbox mold="3d" open="false">
+				<caption label="Asignar productos a proveedor"
+					image="/images/toolbar/arrow.png"/>
+					<include
+						src="/modulos/proveedores/proveedoresProducto.zul" />
+			</groupbox>
+
+		</vlayout>
+
+
+
+
+
+
+	</window>
+</zk>

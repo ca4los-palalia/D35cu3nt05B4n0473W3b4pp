@@ -1,0 +1,278 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')"
+		form="@id('fx') @save(pvm.producto, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.producto.utils.ProductoValidator')"
+		validationMessages="@id('vmsgs')">
+
+		<vlayout>
+			<grid>
+				<columns>
+					<column />
+					<column width="20%" zclass="shadowMenuActions" />
+				</columns>
+				<rows>
+					<row zclass="shadowMenuActions">
+						<div style="margin:5px">
+							<button
+								label="Productos > Actualización costos"
+								image="/images/toolbar/home32.png"
+								zclass="panelInfoItemMenuTitle" />
+						</div>
+
+						<hlayout
+							style="text-align:right; margin:5px ">
+							<button id="saveButton" onClick="@command('actualizarPrecioCosto')"
+								image="/images/toolbar/saveOff.png" sclass="web_button" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+
+		</vlayout>
+
+		<separator />
+		<separator />
+
+		<vlayout>
+			<grid style="border: 0;">
+				<columns>
+					<column width="15%" />
+					<column />
+					<column width="13%" />
+				</columns>
+				<rows>
+					<row
+						style="background-color:transparent; border: 0;">
+						<label value="Buscar"
+							sclass="fontSizeContentGrid" tooltiptext="nombre o clave" />
+						<textbox id="buscadorProducto"
+							value="@bind(pvm.buscarProducto.nombre)" width="100%"
+							sclass="fontSizeContentGrid" />
+						<hlayout style="text-align:center">
+							<button
+								image="/images/toolbar/find16x16.png" zclass="find_button"
+								onClick="@command('findProductoPrecioCosto')"
+								tooltiptext="Buscar Productos" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+		</vlayout>
+
+		<separator />
+		<separator bar="true" sclass="separador" />
+		<separator />
+
+
+		<grid style="border: 0;">
+			<columns>
+				<column width="13%" />
+				<column width="25%" />
+				<column width="13%" />
+				<column />
+			</columns>
+			<rows>
+				<row style="background-color:transparent; border: 0;">
+					<label value="Clave:" />
+					<textbox id="clave" zclass="tBox" maxlength="24"
+						readonly="true" width="100%" value="@bind(pvm.producto.clave)" />
+					<label value="Nombre:" />
+					<textbox zclass="tBox" width="100%" readonly="true"
+						value="@bind(pvm.producto.nombre)" maxlength="60" />
+				</row>
+				<row style="background-color:transparent; border: 0;">
+					<label value="Marca:" />
+					<textbox zclass="tBox" width="100%" maxlength="22"
+						readonly="true" value="@bind(pvm.producto.marca)" />
+					<label value="Modelo :" />
+					<textbox zclass="tBox" width="100%" maxlength="24"
+						readonly="true" value="@bind(pvm.producto.modelo)" />
+				</row>
+			</rows>
+		</grid>
+
+		<grid style="border: 0;">
+
+			<columns>
+				<column width="13%" />
+				<column />
+				<column width="13%" />
+				<column style="text-align:center;" width="100px" />
+			</columns>
+			<rows>
+				<row style="background-color:transparent; border: 0;">
+					<label value="Descripción:" />
+					<textbox multiline="true" width="100%"
+						readonly="true" value="@bind(pvm.producto.descripcion)"
+						droppable="false" type="text" zclass="tBox" height="80px" />
+
+					<label value="imagen:" />
+					<image src="C:\\productTemp.png" width="80px"
+						height="80px" />
+				</row>
+			</rows>
+		</grid>
+
+		<separator bar="true" />
+
+		<grid style="border: 0;">
+			<columns>
+				<column width="13%" />
+				<column />
+				<column width="13%" />
+				<column />
+				<column width="13%" />
+				<column />
+			</columns>
+			<rows>
+				<row style="background-color:transparent; border: 0;">
+					<label value="Activo" />
+					<checkbox checked="@bind(pvm.producto.activo)"
+						disabled="true" />
+					<label value="En existencia" />
+					<longbox width="100%"
+						value="@bind(pvm.producto.enExistencia)" readonly="true" />
+					<label value="Unidad :" />
+					<textbox value="@bind(pvm.producto.unidad.nombre)"
+						width="100%" readonly="true" />
+				</row>
+			</rows>
+		</grid>
+
+		<separator />
+		<separator bar="true" sclass="separador" />
+		<separator />
+
+
+				
+					<grid style="border: 0;">
+						<columns>
+							<column label="Datos actuales" />
+							<column label="Nuevos datos" />
+						</columns>
+						<rows>
+							<row
+								style="background-color:transparent; border: 0;">
+								<hlayout>
+									<grid style="border: 0;">
+										<columns>
+											<column width="25%" />
+											<column />
+											<column />
+										</columns>
+										<rows>
+
+											<row>
+												<label />
+												<label
+													value="Costo unitario" />
+												<label
+													value="Actualizado" />
+											</row>
+
+											<row
+												style="background-color:transparent; border: 0;">
+												<label
+													value="Reposición:" />
+												<doublebox zclass="tBox" value="@bind(pvm.costosProducto.reposicionUnitario)"
+													readonly="true" width="100%"/>
+												<doublebox zclass="tBox" value="@bind(pvm.costosProducto.reposicionActualizado)"
+													readonly="true" width="100%"/>
+												
+											</row>
+
+											<row
+												style="background-color:transparent; border: 0;">
+												<label
+													value="Máximo:" />
+												<doublebox zclass="tBox" value="@bind(pvm.costosProducto.maximoUnitario)"
+													readonly="true" width="100%"/>
+												<doublebox zclass="tBox" value="@bind(pvm.costosProducto.maximoActualizado)"
+													readonly="true" width="100%"/>
+												
+											</row>
+
+										</rows>
+									</grid>
+								</hlayout>
+
+
+								<hlayout>
+									<grid style="border: 0;">
+										<columns>
+											<column />
+											<column />
+										</columns>
+										<rows>
+											<row>
+												<label
+													value="Costo unitario" />
+												<label
+													value="Actualizado" />
+											</row>
+
+											<row
+												style="background-color:transparent; border: 0;">
+												<doublebox zclass="tBox" value="@bind(pvm.costosProductoNuevo.reposicionUnitario)"
+													width="100%"/>
+												<doublebox zclass="tBox" value="@bind(pvm.costosProductoNuevo.reposicionActualizado)"
+													width="100%"/>
+											</row>
+											<row
+												style="background-color:transparent; border: 0;">
+												<doublebox zclass="tBox" value="@bind(pvm.costosProductoNuevo.maximoUnitario)"
+													width="100%"/>
+												<doublebox zclass="tBox" value="@bind(pvm.costosProductoNuevo.maximoActualizado)"
+													width="100%"/>
+											</row>
+										</rows>
+									</grid>
+								</hlayout>
+
+							</row>
+
+						</rows>
+					</grid>
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+</zk>

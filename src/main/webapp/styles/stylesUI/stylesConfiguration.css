@@ -1,0 +1,236 @@
+@CHARSET "UTF-8";
+
+/*NOTA: Texto de la  parte superior en la región de configuración*/
+.txtGraySmall
+{
+	color:#ABABAB;
+	font-size: 9pt;
+}
+.txtTituloC
+{
+	font-size: 12pt;
+	font-weight: bold;	
+}
+
+.pagecReportes .txtGraySmall,
+.pagecFactura .txtGraySmall
+{		
+	display:block;
+	padding-left: 10px;
+	padding-top: 5px;	
+} 
+
+/*#-----------------------------#*/
+		/*PAGINA: cReportes.zul*/
+/*#-----------------------------#*/
+.pagecReportes
+{	
+				
+}		
+/*#-----------------------------#*/
+		/*PAGINA: wFactura -- Sección configuración */
+/*#-----------------------------#*/
+
+
+.pagecFactura .btnGray
+{
+	height: 20px !important;
+}
+.pagecFactura .cajaTexto
+{
+	background-repeat: repeat;	
+}
+.seccionComprobante .cmbTipoMoneda.z-combobox, 
+.pagecFactura .cmbMetodoPago.z-combobox,
+.pagecFactura .cmbGiro.z-combobox,
+.pagecFactura .cmbPersonalizacion.z-combobox,
+.cmbConsolidacionFiscal.z-combobox
+{
+	border-bottom-style:solid !important;
+	border-bottom-color:gray !important;
+	border-bottom-width:thin;
+	
+	margin-left:5px;	
+	height: 16px !important;
+	width: 220px !important;
+}
+.seccionComprobante .cmbTipoMoneda .z-combobox-inp,
+.pagecFactura .cmbMetodoPago .z-combobox-inp,
+.pagecFactura .cmbGiro .z-combobox-inp,
+.pagecFactura .cmbPersonalizacion .z-combobox-inp,
+.pagecFactura .cmbConsolidacionFiscal .z-combobox-inp
+{	
+	width: 200px !important;
+}
+	/*NOTA: Sección forma de pago*/
+.seccionFormaPago .z-textbox,
+.seccionFormaPago .txtMontoTotal
+{
+	background-repeat:repeat;
+	height:20px !important;
+	width: 80px;
+}
+	.seccionFormaPago .txtMontoTotal
+	{
+		width: 220px;
+	}
+	.seccionFormaPago .z-timebox-inp,
+	.seccionFormaPago .z-datebox
+	{		
+	}
+	
+	/*NOTA: Sección - Condiciones de pago*/
+.seccionCondicionesPago .cajaTexto
+{	
+	width: 30px;	
+}
+	.seccionCondicionesPago .z-vlayout
+	{		
+		margin-left: 20px;
+	}
+		.seccionCondicionesPago .z-vlayout-inner
+		{
+			padding-top: 10px;
+		}
+			/*NOTA: Declaración para hacer un tabular*/
+			.seccionCondicionesPago .z-hlayout
+			{
+				margin-left: 20px;
+			}
+	/*NOTA: Sección - Impuestos trasladados*/			
+.seccionImpuestosT .txtNombre,
+.seccionImpuestosR .txtNombre
+{
+	margin-left:10px;
+	width: 210px;
+}
+	.seccionImpuestosT .z-hlayout,
+	.seccionImpuestosR .z-hlayout
+	{
+		margin-top: 5px;
+		margin-left: 10px;
+	}
+		.seccionImpuestosT .z-hlayout .cajaTexto,
+		.seccionImpuestosR .z-hlayout .cajaTexto
+		{
+			width: 100px;
+		}
+	
+	/*NOTA: Columnas "Nombre, Tipo y Porcentaje" de las secciones ImpuestosTrasladados e ImpuestosRetenidos*/
+	.contentColumnas
+	{				
+		clear: both;
+		margin-top:0;
+		font-size:11px !important;
+	}
+		.colNombre, .colTipo, .colPorcentaje
+		{
+			height:20px;
+		}		
+		.colNombre.tituloColumna,
+		.colTipo.tituloColumna, 
+		.colPorcentaje.tituloColumna
+		{			
+			text-align: center;
+		}
+		.colNombre
+		{
+			/*background-color: aqua;*/
+			width: 90px;
+		}
+		.colTipo
+		{
+			/*background-color: gray;*/		
+			width: 50px;			
+		}
+			.colTipo .z-combobox
+			{
+				height:18px !important;
+				width: 48px !important;
+			}
+				.colTipo .z-combobox-inp
+				{
+					height: 10px !important;
+					width: 30px !important;
+				}
+				.colTipo .z-combobox-btn
+				{
+					width: 10px;
+				}
+		.colPorcentaje
+		{
+			/*background-color: olive;*/			
+			width: 70px;
+		}
+			.colPorcentaje .z-combobox
+			{
+				height:18px !important;
+				width: 70px !important;
+			}
+				.colPorcentaje .z-combobox-inp
+				{
+					height: 10px !important;
+					width: 55px !important;
+				}
+				.colPorcentaje .z-combobox-btn
+				{
+					width: 10px;
+				}
+				.colPorcentaje .cajaTexto
+				{
+					margin-top:2px;
+					width: 65px !important;
+				}
+				
+			
+	/*NOTA:Sección - Comprobante*/
+	.seccionComprobante .txtTipoCambio,
+	.seccionComprobante .cmbSimboloTM.z-combobox
+	{			
+		height: 20px !important;
+		margin-left: 5px;		
+	}	
+	.seccionComprobante .cmbSimboloTM.z-combobox
+	{
+		background-repeat:repeat;				
+		width: 125px !important;
+	}
+		.seccionComprobante .cmbSimboloTM .z-combobox-inp
+		{			
+			width: 100px !important;
+		}
+	.seccionComprobante .txtTipoCambio
+	{				
+		width: 80px;
+	}
+	/*NOTA: detalles para el par de caja de texto y a su derecha un boton*/
+	.parTxtBtn
+	{		
+		float: left;
+		margin-left: 5px;
+		width: 230px;
+	}	
+		.parTxtBtn .cajaTexto
+		{
+			float: left;
+			width: 160px !important;
+		}
+		.parTxtBtn .btnFloatR
+		{
+			margin: 0;
+			margin-right: 2px;
+		}
+		
+/*#-----------------------------#*/
+		/*PAGINA: clientes -- Sección configuración */
+/*#-----------------------------#*/
+
+.pagecClientes .btnGray
+{
+	display: block;
+	margin:0 auto;
+	margin-bottom:5px;
+	width: 180px !important;		
+}
+
+

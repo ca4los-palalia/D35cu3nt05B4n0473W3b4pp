@@ -1,0 +1,194 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<style
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+		type="text/javascript" />
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		type="text/javascript" />
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer" height="100%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelVM')">
+
+
+
+
+
+
+
+
+
+		<borderlayout>
+			<north maxsize="300" size="68%">
+				<window title="Programas" border="normal" height="100%"
+					width="100%">
+
+					<grid width="99%" vflex="1"
+						model="@bind(vm.programas) @template((vm.displayEdit and each.editingStatus) ? 'editable' : 'noneditable')">
+
+						<columns>
+							<column width="4%" align="center">
+								N.
+							</column>
+							<column width="5%" align="center">
+								visible
+							</column>
+							<column width="15%" sort="auto(nombre)">
+								Nombre
+							</column>
+							<column sort="auto(descripcion)">
+								Descripcion
+							</column>
+							<column width="10%" align="center">
+								Logo
+							</column>
+							<column width="10%" align="center">
+								Banner
+							</column>
+							<column width="17%">Actualizado</column>
+							<column width="10%" align="center">
+								Editar
+							</column>
+						</columns>
+						<template name="editable" var="prog">
+							<row>
+
+								<label width="100%"
+									style="font-size: 80%;" value="@load(progStatus.index)" />
+								<checkbox checked="@load(prog.visible)" disabled="true"
+									onClick="@command('salvarVisibilidadProg', progSel=prog)"/>
+								
+								<textbox width="100%"
+									value="@load(prog.nombre) @save(prog.nombre, before='confirm')" />
+								<textbox width="100%" multiline="true"
+									rows="10"
+									value="@load(prog.descripcion) @save(prog.descripcion, before='confirm')" />
+								<div>
+									<image width="30px" height="30px"
+										class="img-circle" content="@load(vm.logoProgramas)" />
+									<button Label="Add"
+										upload="true,maxsize=10000"
+										onUpload="@command('uploadLogo', upEvent=event)"
+										mold="trendy" />
+								</div>
+
+								<div>
+									<image width="30px" height="30px"
+										class="img-circle" content="@bind(vm.bannerProgramas)" />
+									<button Label="Add"
+										upload="true,maxsize=10000"
+										onUpload="@command('uploadBanner', upEvent=event)"
+										mold="trendy" />
+
+								</div>
+								<label width="100%"
+									value="@load(prog.ultimaActualizacionString)  @save(prog.ultimaActualizacionString, before='confirm')" />
+								<div>
+									<button tooltip="Salvar cambios"
+										image="/images/toolbar/confirm18.png"
+										onClick="@command('confirm', programaStatus=prog)" />
+									<button tooltip="cancelar"
+										image="/images/toolbar/cancel18.png"
+										onClick="@command('changeEditableStatus', programaStatus=prog)" />
+								</div>
+							</row>
+						</template>
+						<template name="noneditable">
+							<row>
+								<label width="100%"
+									value="${forEachStatus.index + 1}" />
+								<checkbox checked="@load(each.visible)"
+									onClick="@command('salvarVisibilidadProg', progSel=each)"/>
+								<label width="100%"
+									value="@load(each.nombre)" />
+								<label value="@load(each.descripcion)" />
+
+								<image width="30px" height="30px"
+									class="img-circle" content="@load(each.logoAImage)" />
+
+								<image width="30px" height="30px"
+									class="img-circle" content="@load(each.bannerAImage)" />
+
+
+								<label
+									value="@load(each.ultimaActualizacion)" width="100%" />
+
+								<div>
+									<button
+										image="/images/toolbar/edit20.png" tooltip="Editar programa"
+										onClick="@command('changeEditableStatus', programaStatus=each)" />
+									<button tooltip="Eliminar programa"
+										image="/images/toolbar/delete18.png"
+										onClick="@command('eliminarPrograma', programaStatus=each)" />
+								</div>
+							</row>
+						</template>
+					</grid>
+
+				</window>
+			</north>
+			<center border="0">
+				<window title="Registrar un nuevo programa" width="99%"
+					height="91%" border="normal">
+					<grid>
+						<columns>
+							<column label="nombre" width="15%" />
+							<column label="Descripción"> 
+								<button
+									image="/images/toolbar/json16.png"
+									onClick="@command('insertProgramasFromJSON')"
+									tooltiptext="Importar desde JSON" />
+							</column>
+							<column align="center">
+								<button Label="Logo"
+									image="/images/toolbar/add16.png" upload="true,maxsize=50000"
+									onUpload="@command('uploadLogo', upEvent=event)" mold="trendy" />
+								<button Label="Banner"
+									image="/images/toolbar/add16.png" upload="true,maxsize=50000"
+									onUpload="@command('uploadBanner', upEvent=event)"
+									mold="trendy" />
+
+								<button label="Crear"
+									onClick="@command('nuevoPrograma')"
+									image="/images/toolbar/save16.png" />
+								<button upload="true"
+									image="/images/toolbar/excel16.png"
+									onUpload="@command('onUploadExcelPrograma',upEvent=event)"
+									tooltiptext="Importar Categorias desde excel" />
+							</column>
+
+						</columns>
+						<rows>
+							<row>
+								<textbox multiline="true" rows="7"
+									value="@bind(vm.programa.nombre)" width="100%" />
+								<textbox multiline="true" rows="7"
+									value="@bind(vm.programa.descripcion)" width="100%" />
+								<grid>
+									<columns>
+										<column align="center" />
+										<column align="center" />
+									</columns>
+									<rows>
+										<row>
+											<image
+												content="@load(vm.logoProgramas)" width="50%" height="50%" />
+											<image
+												content="@bind(vm.bannerProgramas)" width="50%"
+												height="50%" />
+										</row>
+									</rows>
+								</grid>
+							</row>
+						</rows>
+					</grid>
+				</window>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

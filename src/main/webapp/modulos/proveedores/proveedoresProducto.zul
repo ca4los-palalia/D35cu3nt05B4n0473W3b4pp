@@ -1,0 +1,202 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<style src="/styles/proveedores/styleProveedor.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.proveedor.ProveedoresVM')">
+
+
+		<vlayout>
+			<listbox emptyMessage="No se encontro ningun proveedor"
+				rows="5" onSelect="@command('seleccionarProveedorRelacionProducto')"
+				model="@load(pvm.proveedoresAsociacion)"
+				selectedItem="@bind(pvm.proveedoresAsociacionSelected)">
+				<auxhead>
+					<auxheader colspan="5" class="topic">
+						<grid style="border: 0;">
+							<columns>
+								<column width="15%" />
+								<column />
+								<column width="8%" />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Buscar"
+										sclass="fontSizeContentGrid" />
+									<textbox id="buscadorAsociacion"
+										value="@bind(pvm.buscarProveedorAsociar.nombre)" width="100%"
+										sclass="fontSizeContentGrid" />
+									<button
+										image="/images/toolbar/find16x16.png" zclass="find_button"
+										onClick="@command('performSearchProveedorAsociacion')"
+										tooltiptext="Buscar proveedor" />
+								</row>
+							</rows>
+						</grid>
+					</auxheader>
+				</auxhead>
+				<listhead>
+					<listheader label="Clave" width="10%" />
+					<listheader label="Nombre" width="100%" />
+				</listhead>
+				<template name="model" var="proveedor">
+					<listitem>
+						<listcell>
+							<label value="@bind(proveedor.clave)"
+								width="100%" sclass="fontSizeContentGrid" />
+						</listcell>
+						<listcell>
+							<label value="@bind(proveedor.nombre)"
+								width="100%" sclass="fontSizeContentGrid" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</vlayout>
+
+		<separator />
+		<separator bar="true" sclass="separador" />
+
+		<grid style="border: 0;">
+			<columns>
+				<column />
+				<column />
+			</columns>
+			<rows>
+				<row style="background-color:transparent; border: 0;"
+					valign="top">
+
+					<groupbox>
+						<caption label="Catalago de productos" />
+						<grid style="border: 0;">
+							<columns>
+								<column width="15%" />
+								<column />
+								<column width="11%" />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Buscar"
+										sclass="fontSizeContentGrid" tooltiptext="nombre o clave" />
+									<textbox id="buscadorProducto"
+										value="@bind(pvm.buscarProducto.nombre)" width="100%"
+										sclass="fontSizeContentGrid" />
+									<button
+										image="/images/toolbar/find16x16.png" zclass="find_button"
+										onClick="@command('performSearchProductoAsociacion')"
+										tooltiptext="Buscar Productos" />
+								</row>
+							</rows>
+						</grid>
+
+						<listbox
+							emptyMessage="No se encontro ningun producto" rows="7"
+							model="@load(pvm.productosDB)"
+							selectedItem="@bind(pvm.producto)">
+
+							<listhead>
+								<listheader label="" align="center"
+									width="10%" />
+								<listheader label="Clave" width="15%" />
+								<listheader label="Nombre" />
+							</listhead>
+							<template name="model" var="productoVar">
+								<listitem>
+									<listcell>
+										<checkbox
+											tooltiptext="Seleccionar"
+											checked="@bind(productoVar.seleccionar)" />
+									</listcell>
+									<listcell>
+										<label
+											value="@bind(productoVar.clave)" width="100%"
+											sclass="heightGrid fontSizeContentGrid" />
+									</listcell>
+									<listcell>
+										<label
+											value="@bind(productoVar.nombre)" width="100%"
+											sclass="heightGrid fontSizeContentGrid" />
+									</listcell>
+								</listitem>
+							</template>
+						</listbox>
+					</groupbox>
+
+					<groupbox>
+						<caption label="Productos del proveedor" />
+
+						<grid style="border: 0;">
+							<columns>
+								<column />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<vlayout>
+										<hlayout>
+											<button
+												image="/images/toolbar/add16.png" zclass="find_button"
+												onClick="@command('asignarProductosAProveedor')"
+												tooltiptext="Agregar productos seleccionados a proveedor" />
+
+											<button
+												image="/images/toolbar/remove16.png" zclass="find_button"
+												onClick="@command('quitarProductosDeProveedor')"
+												tooltiptext="Quitar productos seleccionados del proveedor" />
+										</hlayout>
+									</vlayout>
+								</row>
+							</rows>
+						</grid>
+						<listbox
+							emptyMessage="No se encontro ningun producto" rows="7" id="pro"
+							model="@bind(pvm.proveedorProductos)"
+							selectedItem="@bind(pvm.proveedorProducto)">
+
+							<listhead>
+								<listheader label="" align="center"
+									width="10%" />
+								<listheader label="Clave" align="center"
+									width="15%" />
+								<listheader label="Nombre" />
+							</listhead>
+							<template name="model" var="prodProv">
+								<listitem>
+									<listcell>
+										<checkbox
+											tooltiptext="Seleccionar para eliminar producto de proveedor"
+											checked="@bind(prodProv.producto.seleccionar)" />
+									</listcell>
+
+									<listcell>
+										<label
+											value="@bind(prodProv.producto.clave)" width="100%"
+											sclass="fontSizeContentGrid" />
+									</listcell>
+									<listcell>
+										<label
+											value="@bind(prodProv.producto.nombre)" width="100%"
+											sclass="fontSizeContentGrid" />
+									</listcell>
+								</listitem>
+							</template>
+						</listbox>
+					</groupbox>
+				</row>
+			</rows>
+		</grid>
+
+
+
+
+
+
+	</window>
+</zk>

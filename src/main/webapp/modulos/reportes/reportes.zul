@@ -1,0 +1,15 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.reportes.Reporte')">
+
+
+		<button style="text-align: center;"
+			onClick="@command('gererarReporte')"
+			image="/images/workInProgress.png" />
+
+		<iframe id="report" height="800px" width="800px" autohide="true"></iframe>
+
+	</window>
+</zk>

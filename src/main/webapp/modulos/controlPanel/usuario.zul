@@ -1,0 +1,101 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('evm') @init('com.cplsystems.stock.app.vm.controlpanel.UsuarioVM')"
+		form="@id('fx') @save(evm, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.controlpanel.utils.UsuarioValidator')"
+		validationMessages="@id('vmsgs')">
+		<vlayout style="padding-top:15px">
+			<grid>
+				<columns>
+					<column />
+					<column width="35%" zclass="shadowMenuActions" />
+				</columns>
+				<rows>
+					<row zclass="shadowMenuActions">
+						<div style="margin:5px">
+							<button
+								label="Panel de control > Registro y configuración de clientes"
+								image="/images/toolbar/home32.png"
+								zclass="panelInfoItemMenuTitle" />
+						</div>
+						<hlayout style="text-align:right">
+							<button image="/images/toolbar/newDoc.png"
+								sclass="web_button" onClick="@command('nuevaOrganizacion')"
+								tooltiptext="Registrar nueva organización" />
+							<button image="/images/toolbar/update.png"
+								sclass="web_button" onClick="@command('saveChanges')"
+								tooltiptext="Guardar cambios" />
+							<button image="/images/toolbar/delete.png"
+								sclass="web_button" onClick="@command('delete')"
+								tooltiptext="Remover organización" />
+							<button image="/images/toolbar/find.png"
+								sclass="web_button" onClick="@command('buscarOrganizacion')"
+								tooltiptext="Buscar organizaciones" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+
+			<hlayout style="padding-top:5px;padding-left:5px">
+
+				<vlayout style="text-align:center" visible="false">
+					<image content="@bind(evm.businessImage)"
+						height="100px" width="100px"
+						style="border-style: inset;border-color: #D9E0E7;border-width: 1px;" />
+					<separator />
+
+					<button label="Adjuntar" upload="true"
+						image="/images/toolbar/upload32.png"
+						onUpload="@command('uploadProfilePicture')" />
+				</vlayout>
+
+				<vlayout>
+					<hlayout style="padding-left:15px">
+						<label value="*Compañía:" />
+						<textbox cols="80" zclass="tBox"
+							value="@bind(evm.organizacion.nombre)" />
+					</hlayout>
+					<hlayout style="padding-left:21px">
+						<label value="*Dirección:" />
+						<textbox cols="60" zclass="tBox"
+							value="@bind(evm.organizacion.calle)" />
+						<label value="C.P:" />
+						<intbox cols="9" zclass="tBox"
+							value="@bind(evm.organizacion.codigoPostal)" />
+					</hlayout>
+
+					<separator />
+
+					<hlayout style="padding-left:45px">
+						<label value="*RFC:" />
+						<textbox zclass="tBox"
+							value="@bind(evm.organizacion.rfc)" />
+					</hlayout>
+					<separator />
+
+					<hlayout style="padding-left:27px">
+						<label value="*Usuario:" />
+						<textbox zclass="tBox"
+							value="@bind(evm.usuario.benutzer)" />
+						<hlayout style="padding-left:23px">
+							<label value="Fecha caducidad:" />
+							<datebox cols="15" format="long"
+								value="@bind(evm.usuario.fechaCaducidad)"
+								onCreate="self.value = new Date()" locale="mx" />
+						</hlayout>
+					</hlayout>
+
+					<hlayout style="padding-left:7px">
+						<label value="*Contraseña:" />
+						<textbox zclass="tBox" type="password"
+							maxlength="24" value="@bind(evm.usuario.kennwort)" />
+						<label value="*Repetir Contraseña:" />
+						<textbox zclass="tBox" type="password"
+							maxlength="24" value="@bind(evm.usuario.retypeKennwort)" />
+					</hlayout>
+				</vlayout>
+			</hlayout>
+		</vlayout>
+	</div>
+</zk>

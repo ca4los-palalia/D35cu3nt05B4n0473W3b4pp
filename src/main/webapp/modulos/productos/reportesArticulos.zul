@@ -1,0 +1,148 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')"
+		form="@id('fx') @save(pvm.producto, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.producto.utils.ProductoValidator')"
+		validationMessages="@id('vmsgs')">
+
+		<panel title="Productos > Reportes productos" border="normal"
+			framable="true">
+			<panelchildren>
+				<vbox>
+
+					<vlayout>
+						<grid>
+							<columns>
+								<column />
+								<column width="35%"
+									zclass="shadowMenuActions" />
+							</columns>
+							<rows>
+								<row zclass="shadowMenuActions">
+									<div style="margin:5px"></div>
+
+									<hlayout
+										style="text-align:right; margin:5px ">
+										<button
+											image="/images/toolbar/newDoc.png" sclass="web_button"
+											tooltiptext="Generar PDF" />
+									</hlayout>
+								</row>
+							</rows>
+						</grid>
+
+					</vlayout>
+					<splitter id="s1" collapse="before"
+						sclass="separador"
+						tooltiptext="Ocultar o mostrar menú de acciones" />
+
+
+					<vlayout>
+						<separator />
+
+						<grid style="border: 0;">
+							<columns>
+								<column width="20%" />
+								<column />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Seleccionar reporte:" />
+									<combobox width="100%" />
+								</row>
+							</rows>
+						</grid>
+
+
+						<grid style="border: 0;">
+							<columns>
+								<column width="20%" />
+								<column />
+								<column width="20%" />
+								<column />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Desde:" />
+									<textbox width="100%" />
+									<label value="Hasta:" />
+									<textbox width="100%" />
+								</row>
+							</rows>
+						</grid>
+
+						<grid style="border: 0;">
+							<columns>
+								<column width="20%" />
+								<column />
+								<column />
+							</columns>
+							<rows>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Linea:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Familia:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Categoria:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="departamento:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Proveedor:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Ubicación:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+								<row
+									style="background-color:transparent; border: 0;">
+									<label value="Orden:" />
+									<textbox width="100%" />
+									<textbox width="100%"
+										disabled="true" />
+								</row>
+							</rows>
+						</grid>
+
+					</vlayout>
+				</vbox>
+			</panelchildren>
+		</panel>
+
+	</div>
+</zk>

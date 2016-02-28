@@ -1,0 +1,36 @@
+<?page title="Home" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="printworld.descuentosbanorte.utils.IntegrityChecker" BENUTZER="${sessionUtils}"?>
+<zk>
+	<script src="/scripts/watermarkPlugin.js" type="text/javascript" />
+	<script src="/scripts/controlsGeneric.js" type="text/javascript" />
+	<style src="/styles/home/styleHome.css" />
+	
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.VM.HomeVM')">
+
+		<div id="container" zclass="homeContainer">
+			<div id="header" zclass="homeHeader">
+				<vlayout style="text-align:right; margin:5px ">
+					<include src="/header.zul" />
+				</vlayout>
+			</div>
+
+			<borderlayout style="width: 73%; overflow: auto;">
+				<west size="20%" flex="true" splittable="true"
+					collapsible="true">
+					<div>
+						<include src="/menu.zul" />
+					</div>
+				</west>
+				<center border="none" flex="true" autoscroll="true">
+					<div id="content">
+						<include src="/inicio.zul" />
+					</div>
+				</center>
+			</borderlayout>
+			<div id="footer" zclass="homeFooter"></div>
+		</div>
+
+	</window>
+</zk>

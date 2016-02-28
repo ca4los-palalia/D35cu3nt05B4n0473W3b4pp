@@ -1,0 +1,55 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+<?script content="zk.googleAPIkey='ABQIAAAAmGxmYR57XDAbAumS9tV5fxQXyylOlR69a1vFTcUcpV6DXdesOBSMEHfkewcSzwEwBT7UzVx8ep8vjA'"?>
+
+<zk>
+	<style
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+		type="text/javascript" />
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		type="text/javascript" />
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<window apply="org.zkoss.bind.BindComposer" height="100%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelPromocionVM')">
+
+		<borderlayout>
+			<center border="0">
+				<window title="Reportes"
+					width="98%">
+					
+					<hlayout>
+						<button label="Generar reporte por estados"
+							onClick="@command('generarReportePorEstados')"
+							tooltiptext="Elaborar reporte desde JSON" />
+						<button label="Generar reporte global"
+							onClick="@command('generarReporteTodasLasPromociones')"
+							tooltiptext="Elaborar reporte" />
+						<button label="Actualizar estados"
+							onClick="@command('actualizarEstadosUbicacion')"
+							tooltiptext="Update estados" />	
+							
+							
+							
+
+					</hlayout>
+					
+					<hlayout>
+						<checkbox label="Programa" checked="@bind(vm.checkPrograma)"/>
+						<checkbox label="Categoria" checked="@bind(vm.checkCategoria)"/>
+						<checkbox label="Nombre promocion" checked="@bind(vm.checkNombrePromocion)"/>
+						<checkbox label="Descripcion de promocion" checked="@bind(vm.checkDescripcionPromocion)"/>
+						<checkbox label="Oferta" checked="@bind(vm.checkOferta)"/>
+						<checkbox label="Slogan" checked="@bind(vm.checkSlogan)"/>
+						<checkbox label="Telefono" checked="@bind(vm.checkTelefono)"/>
+						<checkbox label="URL" checked="@bind(vm.checkURL)"/>
+						<checkbox label="Numero de sucursales" checked="@bind(vm.checkNumeroSucursales)"/>
+
+					</hlayout>
+				</window>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

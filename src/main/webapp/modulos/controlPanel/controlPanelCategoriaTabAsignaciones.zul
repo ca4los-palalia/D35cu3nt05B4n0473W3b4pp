@@ -1,0 +1,111 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer" height="100%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelCategoriaVM')">
+
+
+
+
+
+		<borderlayout>
+			<north maxsize="300" size="50%">
+				<borderlayout>
+					<west size="100%" maxsize="250" splittable="true"
+						collapsible="true">
+						<window
+							title="Programas - Categorias ${vm.contadorProgramas}"
+							border="normal" height="100%" width="100%">
+
+							<listbox width="100%" vflex="1"
+								emptyMessage="No hay registros"
+								model="@bind(vm.categoriaProgramas)"
+								selectedItem="@bind(vm.categoriaProgramaSelected)"
+								onSelect="@command('buscarPromociones')">
+
+								<listhead>
+									<listheader align="center"
+										width="4%" />
+									<listheader label="Programa"
+										sort="auto(programa.nombre)" />
+									<listheader label="Categoria"
+										sort="auto(categoria.nombreCategoria)" />
+								</listhead>
+								<template name="model" var="varItem">
+									<listitem>
+										<listcell>
+											<label width="100%"
+												value="@load(varItemStatus.index)" />
+										</listcell>
+										<listcell>
+											<label width="100%"
+												value="@load(varItem.programa.nombre)" />
+										</listcell>
+										<listcell>
+											<label width="100%"
+												value="@load(varItem.categoria.nombreCategoria)" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</window>
+					</west>
+				</borderlayout>
+			</north>
+			<center border="0">
+
+				<borderlayout>
+					<west maxsize="600" size="50%" flex="true"
+						border="0" splittable="true">
+						<window
+							title="Catalogo de promociones ${vm.contadorCategorias}"
+							border="normal" height="100%" width="100%">
+
+
+						</window>
+					</west>
+					<center border="0" flex="true">
+						<window
+							title="${vm.contadorCategroriasProgramas}" border="normal"
+							height="100%" width="100%">
+
+							<listbox width="100%" vflex="1"
+								emptyMessage="No hay registros"
+								model="@bind(vm.promocionProgramaCategorias)">
+
+								<listhead>
+									<listheader align="center"
+										width="4%" />
+									<listheader label="Nombre" />
+								</listhead>
+								<template name="model" var="varItem">
+									<listitem>
+										<listcell>
+											<label width="100%"
+												value="@load(varItemStatus.index + 1)" />
+										</listcell>
+										<listcell>
+											<label width="100%"
+												value="@load(varItem.promocion.nombre)" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</window>
+					</center>
+
+				</borderlayout>
+
+
+			</center>
+		</borderlayout>
+
+
+
+
+
+	</window>
+</zk>

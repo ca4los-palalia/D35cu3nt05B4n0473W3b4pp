@@ -1,0 +1,128 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+
+
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')"
+		form="@id('fx') @save(pvm.producto, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.producto.utils.ProductoValidator')"
+		validationMessages="@id('vmsgs')">
+
+
+
+
+
+
+		<grid>
+			<columns>
+				<column />
+				<column width="35%" zclass="shadowMenuActions" />
+			</columns>
+			<rows>
+				<row zclass="shadowMenuActions">
+					<div style="margin:5px">
+						<button label="Productos > Clasificaciones"
+							image="/images/toolbar/home32.png"
+							zclass="panelInfoItemMenuTitle" />
+					</div>
+
+					<hlayout style="text-align:right; margin:5px ">
+						<button image="/images/toolbar/pdf32.png"
+							sclass="web_button"
+							onClick="@command('reporteProductosClasificacionSubmenu')"
+							tooltiptext="Exportar a un archivo PDF" />
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+
+		<separator />
+		<separator />
+
+		<listbox
+			emptyMessage="No se encontraron familias para productos" rows="5"
+			onSelect="@command('changeComboClasificacion')" width="100%"
+			model="@bind(pvm.productoTipoDB)"
+			selectedItem="@bind(pvm.productoTipoSelected)">
+
+			<listhead>
+				<listheader label="Seleccionar familia de productos" />
+			</listhead>
+			<template name="model" var="tipo">
+				<listitem>
+					<listcell>
+						<label value="@bind(tipo.nombre)" width="100%" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+
+		<separator />
+		<separator bar="true" sclass="separador" />
+		<separator />
+
+		<listbox emptyMessage="No se encontraron productos" rows="8"
+			width="100%" model="@bind(pvm.familiasProductos)">
+
+			<auxhead>
+				<auxheader colspan="6">
+					<hlayout>
+						<label value="Productos de la familia: "/>
+						<label
+						value="@bind(pvm.productoTipoSelected.nombre)" />
+					</hlayout>
+					
+				</auxheader>
+			</auxhead>
+
+			<listhead>
+
+				<listheader label="Clave" width="8%" />
+				<listheader label="Nombre" />
+				<listheader label="Costo máximo" />
+				<listheader label="Naturaleza" />
+				<listheader label="Unidad" />
+				<listheader label="En existencia" />
+
+
+			</listhead>
+			<template name="model" var="tipo">
+				<listitem>
+					<listcell>
+						<label value="@bind(tipo.producto.clave)" />
+					</listcell>
+
+					<listcell>
+						<label value="@bind(tipo.producto.nombre)" width="100%" />
+					</listcell>
+
+					<listcell>
+						<label value="@bind(tipo.producto.costoMaximo)"
+							width="100%" />
+					</listcell>
+
+					<listcell>
+						<label
+							value="@bind(tipo.producto.productoNaturaleza.nombre)" width="100%" />
+					</listcell>
+
+					<listcell>
+						<label value="@bind(tipo.producto.unidad.nombre)"
+							width="100%" />
+					</listcell>
+
+					<listcell>
+						<label value="@bind(tipo.producto.enExistencia)"
+							width="100%" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+
+	</div>
+</zk>

@@ -1,0 +1,60 @@
+<?page title="Pagina de inicio" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<style src="/styles/home/styleLogin.css" />
+
+
+
+	<div apply="org.zkoss.bind.BindComposer" zclass="loginContainer"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.VM.LoginVM')">
+		
+
+		
+		
+		<div class="loading">
+		  <div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		</div>
+		
+		<!-- 
+		<borderlayout>
+			<north>
+				<div zclass="topContainer" />
+			</north>
+			<center zclass="contentContainer">
+				<vlayout style="text-align:center">
+					<image src="/images/home/banner.png" />
+					<textbox id="user" type="text"
+						onOK="@command('authenticateUser')" value="@bind(vm.user)"
+						zclass="textbox" tooltiptext="Usuario" />
+					<textbox id="password" type="password"
+						onOK="@command('authenticateUser')" value="@bind(vm.password)"
+						zclass="textboxPassword" tooltiptext="Password" />
+					<button label="Accesar" tooltiptext="Autentificar"
+						zclass="button" onClick="@command('authenticateUser')" />
+				</vlayout>
+			</center>
+			<south>
+				<div sclass="bottomContainer">
+					<hlayout sclass="footerLabels">
+						<a style="color: white;" label="Enterprise"
+							href="http://legajo-virtual.com" target="_new" />
+
+						<label
+							value="| contacto: servicios@legajo-virtual.com"
+							style="color: white;" />
+						<label value="| Teléfono: 01 (55) 52 50 45 02"
+							style="color: white;" />
+					</hlayout>
+				</div>
+			</south>
+		</borderlayout>
+		
+		
+		 -->
+		 
+	</div>
+	
+</zk>

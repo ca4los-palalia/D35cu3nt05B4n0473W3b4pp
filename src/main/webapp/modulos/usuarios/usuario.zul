@@ -1,0 +1,28 @@
+<?page title="Home" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')">
+
+		<div zclass="container">
+			<div zclass="div">
+				<label value="Nombre:" />
+				<textbox />
+				<label value="Apellido Paterno" />
+				<textbox />
+				<label value="Apellido Materno" />
+				<textbox />
+				<label value="Email" />
+				<textbox />
+				<label value="API Key" />
+				<textbox />
+				<label value="API Key Confirmation" />
+				<textbox />
+				<label value="Esta cuenta esta" />
+				<combobox />
+			</div>
+
+		</div>
+
+	</window>
+</zk>

@@ -1,0 +1,53 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css"/>
+	<style src="/styles/home/styleHome.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	
+	
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')"
+		form="@id('fx') @save(pvm.producto, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.producto.utils.ProductoValidator')"
+		validationMessages="@id('vmsgs')">
+		<vlayout>
+			<grid>
+				<columns>
+					<column />
+					<column width="35%" zclass="shadowMenuActions" />
+				</columns>
+				<rows>
+					<row zclass="shadowMenuActions">
+						<div style="margin:5px">
+							<button
+								label="Productos > Tipos de movimiento"
+								image="/images/toolbar/home32.png"
+								zclass="panelInfoItemMenuTitle" />
+						</div>
+
+						<hlayout
+							style="text-align:right; margin:5px ">
+							<button image="/images/toolbar/newDoc.png"
+								sclass="web_button" onClick="@command('nuevaCaptura')" />
+							<button id="saveButton"
+								image="/images/toolbar/saveOff.png" sclass="web_button"
+								onClick="@command('newRecord')" />
+							<button image="/images/toolbar/update.png"
+								sclass="web_button" onClick="@command('saveChanges')" />
+							<button image="/images/toolbar/delete.png"
+								sclass="web_button" onClick="@command('deleteRecord')" />
+							<button image="/images/toolbar/find.png"
+								visible="false" sclass="web_button"
+								onClick="@command('search')" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+
+		</vlayout>
+		
+				
+			
+		
+	</div>
+</zk>

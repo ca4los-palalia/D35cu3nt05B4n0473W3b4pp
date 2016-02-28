@@ -1,0 +1,157 @@
+@CHARSET "ISO-8859-1";
+
+body { /*Colocando la imagen de linea gris superior en la página*/
+	background-image: url("../../images/lineaGris.png");
+	background-repeat: repeat-x;
+}
+/*NOTA: Estilo para quitar borde y estilo a los botones*/
+	/*Quitando el estilo de fondo y bordes*/
+.btnM {
+	border-style: none !important;
+	background-color: transparent;
+	height: 20px !important;
+	padding: 0 !important;
+	cursor: pointer;
+}
+/*----------------------------------------------------------------------------*/
+.pnlContentBody {
+	/*background-color:aqua;*/
+	border-right-style: solid;
+	border-color: #6C6D6F;
+	font-family: sans-serif;
+	margin: 0 auto;
+	min-height: 600px;
+	height: auto;
+	width: 990px;
+}
+/*------------------------------*/
+/*Región de cabecera*/
+/*------------------------------*/
+.headerStructure {
+	/*background-color: red;*/
+	border-style: none;
+	color: white;
+	position: relative;
+	height: 50px;
+	width: 100%;
+}
+
+.imgLogoUI {
+	position: fixed;
+	bottom: 100px;
+	left: 350px;
+}
+
+.imgLogoBoton {
+	background-color: transparent;
+	border-style: none;
+	cursor: pointer;
+}
+
+.divInclude {
+	background-color: #404041;;
+	position: absolute;
+	bottom: 0px;
+	left: 180px;
+	height: 40px !important;
+	width: 810px;
+}
+/*------------------------------*/
+/*Region central de la página*/
+/*------------------------------*/
+.divWest,.divCenter {
+	float: left;
+	min-height: 650px;
+}
+
+.divEast {
+	float: right;
+}
+/*----------------------------*/
+.divContentCenter {
+	/*background-color: green;*/
+	float: left;
+	width: 990px;
+	overflow: hidden;
+}
+/*NOTA: Sección contenedora la región central y derecha*/
+.divContentCenterEast {
+	/*background-color:red;*/
+	background-image: url("../../images/barraCentral.png");
+	float: left;
+	width: 810px;
+	overflow: hidden;
+}
+
+.divWest {
+	/*background-color:yellow;*/
+	width: 180px;
+}
+
+.divCenter {
+	/*background-image:url("../../images/base.png");*/
+	background-color: #E6E6E6;
+	border-left-style: none;
+	border-color: #6C6D6F;
+	padding-bottom: 20px;
+	width: 550px;
+	height: auto;
+}
+
+.divEast {
+	/*background-color:fuchsia;*/
+	/*float:left;*/
+	width: 238px;
+}
+
+.divFooter {
+	background-color: orange;
+	clear: both;
+	float: none;
+	height: 50px;
+	padding-top: 10px;
+	width: 100%;
+}
+
+/* --------------------##
+	Pagina Wizard
+-----------------------##*/
+.txtGraySmall {
+	color: #ABABAB;
+	font-size: 9pt;
+}
+
+.contentCenterWizard {
+	background-color: #E6E6E6;
+	padding-top: 4%;
+	min-height: 650px !important;
+}
+
+.contentCenterWizard .contentInfo {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.contentInfo .noPaso {
+	margin-left: 190px;
+}
+
+.lblNombreUsuario {
+	display: block !important;
+	font-weight: bold;
+}
+
+.vlyCorreoUsuario .z-vlayout-inner {
+	margin: 5px 0px;
+}
+
+/*Page Paso 2*/
+.contentleyendaPaso2 .txtInformativo {
+	display: block !important;
+	letter-spacing: 1px;
+	width: 70%;
+}
+
+.noCertificacion {
+	margin-top: 15px;
+}

@@ -1,0 +1,167 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<style
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+		type="text/javascript" />
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+		type="text/javascript" />
+
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<script src="/scripts/watermarks.js" type="text/javascript" />
+	<window apply="org.zkoss.bind.BindComposer" height="97%" width="98%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelVM')">
+
+
+		<borderlayout>
+			<north maxsize="300" size="50%">
+				<borderlayout>
+					<west size="100%" maxsize="250" splittable="true"
+						collapsible="true">
+						<window
+							title="Catalogo de programas ${vm.contadorProgramas}"
+							border="normal" height="100%" width="100%">
+
+
+							<listbox width="100%" vflex="1"
+								selectedItem="@bind(vm.programaBuscarCategorias)"
+								onSelect="@command('seleccionarPrograma')"
+								emptyMessage="No hay categorias" model="@bind(vm.programas)">
+
+								<listhead>
+									<listheader align="center"
+										width="7%" />
+									<listheader label="Nombre"
+										sort="auto(nombre)" />
+								</listhead>
+								<template name="model" var="prog">
+									<listitem>
+										<listcell>
+											<label width="100%"
+												value="@load(progStatus.index + 1)" />
+											<image width="30px" height="30px" class="img-circle"
+												content="@bind(prog.logoAImage)"/>
+
+										</listcell>
+										<listcell>
+											<label
+												value="@bind(prog.nombre)" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</window>
+					</west>
+				</borderlayout>
+			</north>
+			<center border="0">
+
+				<borderlayout>
+					<west maxsize="600" size="50%" flex="true"
+						border="0" splittable="true">
+						<window
+							title="Catalogo de categorias ${vm.contadorCategorias}"
+							border="normal" height="100%" width="100%">
+							
+							
+							<listbox width="100%" vflex="1"
+								emptyMessage="No hay categorias" model="@bind(vm.categorias)">
+								<listhead>
+									<listheader align="center"
+										width="17%" />
+									<listheader label="Nombre"
+										sort="auto(nombreCategoria)">
+										<textbox
+											onChanging="@command('filtrarBusqueda')"
+											value="@bind(vm.filtrarBusqueda)" width="95%" />
+									</listheader>
+									<listheader width="18%">
+										<button upload="true"
+											visible="true" image="/images/toolbar/excel16.png"
+											onUpload="@command('onUploadExcel',upEvent=event)"
+											tooltiptext="Importar asignacion de categorias a programas desde excel" />
+									</listheader>
+								</listhead>
+								<template name="model" var="catVar">
+									<listitem>
+										<listcell>
+											<label width="100%"
+												value="@load(catVarStatus.index + 1)" />
+											<image width="30px"
+												height="30px" content="@load(catVar.logoAImage)"
+												class="img-circle" />
+										</listcell>
+										<listcell>
+											<label
+												value="@bind(catVar.nombreCategoria)" />
+										</listcell>
+										<listcell>
+											<button
+												image="/images/toolbar/right16.png"
+												onClick="@command('seleccionarCategoria', catalogoSel=catVar)" />
+										</listcell>
+									</listitem>
+								</template>
+							</listbox>
+						</window>
+					</west>
+					<center border="0" flex="true">
+
+
+
+
+
+
+
+
+
+
+						<window
+							title="${vm.contadorCategroriasProgramas}" border="normal"
+							height="100%" width="100%">
+
+							<listbox multiple="true" width="100%"
+								vflex="1" emptyMessage="@bind(vm.subTitleCatalogosPrograma)"
+								model="@bind(vm.categoriaProgramas)">
+
+								<listhead>
+									<listheader width="18%"
+										align="center" tooltiptext="Agregar a programa" />
+									<listheader align="center"
+										width="17%" />
+									<listheader />
+								</listhead>
+								<template name="model" var="catVar">
+									<listitem>
+										<listcell>
+											<button
+												image="/images/toolbar/left16.png"
+												onClick="@command('desSeleccionarCategoria', catalogoSel=catVar)" />
+										</listcell>
+										<listcell>
+											<image
+												content="@load(catVar.categoria.logoAImage)" width="20%"
+												height="20%" />
+										</listcell>
+										<listcell>
+											<label
+												value="@bind(catVar.categoria.nombreCategoria)" />
+										</listcell>
+
+									</listitem>
+								</template>
+							</listbox>
+						</window>
+					</center>
+
+				</borderlayout>
+
+
+			</center>
+		</borderlayout>
+	</window>
+</zk>

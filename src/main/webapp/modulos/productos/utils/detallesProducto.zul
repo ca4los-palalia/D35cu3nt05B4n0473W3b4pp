@@ -1,0 +1,28 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css"/>
+	<style src="/styles/home/styleHome.css" />
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('pvm') @init('com.cplsystems.stock.app.vm.producto.ProductosVM')"
+		form="@id('fx') @save(pvm.producto, before='saveChanges')
+              @validator('com.cplsystems.stock.app.vm.producto.utils.ProductoValidator')"
+		validationMessages="@id('vmsgs')">
+		
+		<listbox id="listaProductos" emptyMessage="No se encontro resultado" rows="5" width="100%"
+            model="@load(pvm.productoDB)">
+            
+            <listhead>
+                <listheader label="Nombre"/>
+            </listhead>
+            <template name="model" var="proveedor">
+                <listitem>
+                    <listcell>
+                    	<label value="@bind(proveedor.nombre)" width="100%"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+		
+		
+	</div>
+</zk>

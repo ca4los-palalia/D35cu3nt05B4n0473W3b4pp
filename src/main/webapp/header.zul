@@ -1,0 +1,39 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleHome.css" />
+	<style src="/styles/home/styleGlobal.css" />
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('hvm') @init('printworld.descuentosbanorte.VM.HeaderVM')">
+		<hlayout hflex="1">
+
+			<grid width="100%" sclass="tblWithoutHover"
+				oddRowSclass="none" style="border: 0;">
+				<columns>
+					<column align="left" />
+					<column align="center" width="7%"/>
+				</columns>
+				<rows>
+					<row
+						style="background-color: #EB0029; border: 0;">
+						
+						<label zclass="tlLabel" value="@load(hvm.compania)"
+							style="font-family: 'Titillium Web', sans-serif;"
+							sclass="company" />
+						
+						
+						
+						<image onClick="@command('logOut')" sclass="logOut"
+							tooltiptext="Cerrar sesion" src="/images/toolbar/logOn28.png"
+							style="max-width:100%;height:auto; cursor: pointer;" />
+							
+						
+						
+					</row>
+				</rows>
+			</grid>
+
+
+			
+		</hlayout>
+	</div>
+</zk>

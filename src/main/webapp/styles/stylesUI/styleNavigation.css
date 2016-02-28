@@ -1,0 +1,245 @@
+@CHARSET "UTF-8";
+
+/*--------------------------------------------------------*/
+.cursorManita
+{
+	cursor: pointer;	
+}
+.btnInfoUsuario
+{
+	background-color: transparent;
+	border-style:none;
+	
+	position: absolute;
+	width: 175px;
+	height: 50px;
+	z-index: 85;
+}
+
+.divFotoUsuario, 
+.divFotoEmpresa, .divImgNegocio
+{
+	width: 170px;
+}
+	.lineaGris
+	{	
+		border-bottom-style: solid;
+		border-bottom-color: gray;
+		border-bottom-width:thin;				
+		margin-top:15px;
+		margin-bottom:15px;		
+		height: 2px;	
+		width: 98%;
+	}
+	.textoAzul
+	{
+		color:#4CA8E6;
+	}
+	.textoAzulSmall
+	{
+		color:#4CA8E6;
+		font-weight:lighter;
+		font-size: 10px;
+	}
+	.btnLink
+	{
+		border-style: none;
+		background-color: transparent;
+	}
+	.txtGrisLighter
+	{
+		color:#968B8B;
+		font-weight:lighter;
+		font-size: 11px;			
+	}
+	.txtRojoLighter
+	{
+		color: #C20202;
+		font-weight:lighter;
+		font-size: 10px;
+	}
+	.txtGrisBold
+	{
+		color: #5C5555;
+		font-weight:bold;
+		font-size: 11px;
+	}
+/*--------------------------------------------------------*/
+.divFotoUsuario
+{
+	/*background-color: lime;*/
+	color: black;	
+	font-weight: bold;
+	overflow: hidden;
+	
+	margin-top:12px;	
+}
+	.imagenUsuario
+	{
+		/*background-color:red;*/
+	}
+	.nombreUsuario, .correoUsuario
+	{
+		overflow: hidden;		
+	}
+	.divFotoUsuario .z-vlayout-inner:first-of-type 
+	{
+		margin-top: 10px;		
+		padding-bottom: 0px !important;
+	}
+	.divFotoUsuario .z-vlayout-inner:last-of-type
+	{			
+	}
+	.nombreUsuario
+	{		
+		font-size: 11px;				
+	}
+	.correoUsuario
+	{
+		font-size: 10px;			
+	}
+	.nombreUsuario, .correoUsuario
+	{		
+		display: compact;			
+		overflow:hidden;	
+		text-overflow:ellipsis !important;		
+		white-space: nowrap;
+		width: 120px !important;
+	}
+	
+/*----------------------------------------------------------------------------*/
+.divFotoEmpresa
+{		
+	height:125px;	
+}	
+	.divPruebas
+	{		
+		width:100%;
+	} 		
+		.imgCollapsed
+		{
+			float: right;
+			margin-top:1px;
+			margin-right: 5px;
+		}
+		.popUpNuevoNegocio
+		{
+			background-color:#25A9DF;
+			width: 210px;
+		}
+			.popUpNuevoNegocio .listboxContainer
+			{
+				background-color: transparent;
+				margin: 2px;
+			}	
+			.popUpNuevoNegocio .btnM
+			{
+				color:white; 
+				padding-left:5px;
+			}	
+	.divImgNegocio
+	{
+		background-color: white;
+		border-color: gray;
+		border-width: 1px;
+		border-style: solid;
+		height: 85px;
+		margin: auto;
+	}
+		.imgNegocio
+		{
+			display: block;
+			margin: auto auto;					
+		}
+		.imgCollapsed.editar
+		{
+			margin-right: 0px;
+		}
+		
+/*-Área del menu---------------------------------------------------------------------------*/
+.contentMenu
+{
+	position: relative;
+}
+.headPanel
+{	
+	/*background-color: red !important;*/
+}		
+		.btnSubmenu img
+		{
+			margin-right: 15px;
+		}
+		.btnMenu img
+		{
+			margin-right: 8px;
+		}
+		.btnM.btnConfiguracion img
+		{ margin-right:8px;}
+		.btnM.btnProdServ img, .btnM.btnClientes img
+		{ margin-right: 2px;}
+		.btnSubmenu img
+		{
+			margin-left: 6px;
+		}
+		.btnSubmenu.btnConfiguracion img
+		{
+			margin-left: 0px;
+		}
+		
+	/*Sección que contiene el texto de la cabecera*/
+	.headPanel-header 	
+	{
+		margin-left:30px; /*NOTA: Emparejando el título con los elementos de la lista*/
+		margin-bottom: 10px;
+	}
+		/*Imagen colocada en la cabecera del panel*/
+		.imgHeaderPanel 
+		{
+			position: absolute;
+			left: 0px;
+		}
+/**/
+	.btnMenu, .headPanel-header
+	{
+		color: black !important;
+		font-family:sans-serif;
+		font-size: 12px !important;
+		font-weight: bold !important;				
+		
+	}
+	.pnlChildren .btnSubmenu
+	{
+		margin-left:20px;					
+		
+		font-size: 10px !important;
+		color: gray !important;
+		font-weight:bold !important;
+	}
+	/*Quitando algunas de las propiedades implicitas en el Panel*/	
+			/*Region de los iconos*/
+	.headPanel-icon
+	{
+		overflow: hidden; 
+		width: 16px; 
+		height: 16px; 
+		float: right; 
+		cursor: pointer;
+		background-color : transparent; 
+		background-image :none; 
+		background-position : 0 0; 
+		background-repeat : no-repeat; 
+		margin-left: 2px;	
+	}
+		.headPanel-exp
+		{						
+			background-image: url("../../images/UI/navigationArea/flecha-arriba.png");	
+			background-position: center;
+			margin-right: 10px;		
+		}
+		.headPanel-colpsd .headPanel-exp
+		{
+			background-image: url("../../images/UI/navigationArea/flecha-abajo.png");	
+			background-position: center;
+			margin-right: 10px;		
+		}
+		

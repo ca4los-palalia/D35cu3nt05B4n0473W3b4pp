@@ -1,0 +1,9 @@
+<window id="modalDialog" title="Coffee Order" border="normal" width="460px"
+    apply="com.cplsystems.stock.app.ModalUtils"
+    position="center,center" closable="true"
+    action="show: slideDown;hide: slideUp">
+    <vlayout>
+        
+        <button id="closeBtn" hflex="1" label="close"/>
+    </vlayout>
+</window>

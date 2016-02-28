@@ -1,0 +1,46 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		id="companiasModalDialog"
+		viewModel="@id('evm') @init('com.cplsystems.stock.app.vm.controlpanel.utils.BuscarOrganizacionesVM')"
+		width="460px" height="335px" position="center,center"
+		closable="true">
+		<vlayout height="305px">
+			<hlayout style="padding-top: 10px">
+				<hlayout style="padding-top: 3px">
+					<label value="Compañía:" />
+					<textbox cols="32" value="@bind(evm.compania)" />
+					<label value="RFC:" />
+					<textbox value="@bind(evm.rfc)" cols="14" />
+				</hlayout>
+				<hlayout style="text-align:right">
+					<button image="/images/toolbar/search32.png"
+						onClick="@command('buscarCompania')" />
+				</hlayout>
+			</hlayout>
+
+			<listbox model="@load(evm.companias)"
+				selectedItem="@bind(evm.organizacionSeleccionada)"
+				emptyMessage="No hay resultados que mostrar" mold="paging"
+				pageSize="6">
+				<listhead>
+					<listheader label="Nombre" width="150px"
+						align="center" />
+					<listheader label="RFC" align="center" />
+				</listhead>
+				<template name="model" var="emp">
+					<listitem>
+						<listcell label="${emp.nombre}" />
+						<listcell label="${emp.rfc}" />
+					</listitem>
+				</template>
+			</listbox>
+
+		</vlayout>
+		<hlayout style="text-align:right">
+			<button label="Aceptar"
+				onClick="@command('transferirCompania')" />
+			<button label="Cancelar" onClick="@command('closeDialog')" />
+		</hlayout>
+	</window>
+</zk>

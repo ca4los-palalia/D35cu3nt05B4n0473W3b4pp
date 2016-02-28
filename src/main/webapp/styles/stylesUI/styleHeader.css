@@ -1,0 +1,63 @@
+@CHARSET "ISO-8859-1";
+
+/*--------------------------------------------------*/
+	.btn,.txtBuscar
+	{
+		border-style: none;
+	}
+/*--------------------------------------------------*/
+.hlyContentDateTime
+{	
+	float: right;
+	
+	margin-top: 10px;
+	margin-right: 20px;	
+}
+/*NOTA: Afectando el primer contenedor del hlayout (Date Time*/
+.hlyContentDateTime .z-hlayout-inner:first-of-type
+{
+	padding-top:6px;
+	width:300px;	
+}
+	.lblFecha
+	{
+		font-size: 12px;
+		margin-top: 10px;		
+	}
+	.txtBtnBuscar
+	{				
+	}
+		.txtBuscar
+		{
+			color:gray;
+			background-image: url("/images/UI/barra-buscar.png");
+			float:left;			
+			padding-left: 5px;
+			
+			height: 19px;
+			width: 219px;
+		}	
+		.btnBuscar
+		{		
+			background-color:transparent;
+			float:left;
+			padding:0px;
+			margin:0;
+			margin-left:2px;
+			
+			height:auto;
+			width: auto;
+		}
+	.btnSalir
+	{
+		background-color: #404041;
+		color: white;
+		font-size: 14px;
+		font-weight: bold;
+	}
+		.btnSalir:hover
+		{
+			font-size: 14px;
+			cursor: hand;
+			cursor: pointer;
+		}

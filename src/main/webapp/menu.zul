@@ -1,0 +1,57 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/styles/home/styleGlobal.css" />
+	<style src="/styles/home/styleHome.css" />
+
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.VM.MenuVM')"
+		style="height:auto;
+    max-height:90%; border-style: solid;">
+		<div >
+		
+
+		
+
+
+
+
+
+
+		<tabbox mold="accordion">
+			<tabs children="@load(vm.programas)">
+				<template name="children" var="item">
+					<!-- 
+					<tab label="@load(item.nombre)" image="@load(item.logo)" selected="false"
+					onClick="@command('onMenuClick',item=item)"/> -->
+					<tab label="@load(item.nombre)" selected="false"
+					onClick="@command('onMenuClick',item=item)"/>
+				</template>
+			</tabs>
+			<tabpanels children="@load(vm.programas)">
+				<template name="children" var="item">
+					<tabpanel>
+							
+						<listbox  rows="10"
+							onSelect="@command('seleccionarCategoria')"
+							selectedItem="@bind(vm.categoria)"
+							emptyMessage="No hay categorias"
+							width="100%" model="@bind(vm.categorias)">
+							
+							
+							<template name="model" var="subcategoria">
+								<listitem>
+									<listcell>
+										<label
+											value="@bind(subcategoria.nombreCategoria)" width="100%" />
+									</listcell>
+								</listitem>
+							</template>
+						</listbox>
+					    
+					</tabpanel>
+				</template>
+			</tabpanels>
+		</tabbox>
+		</div>
+	</window>
+</zk>

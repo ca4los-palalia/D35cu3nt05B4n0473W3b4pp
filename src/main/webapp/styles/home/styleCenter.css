@@ -1,0 +1,88 @@
+@CHARSET "ISO-8859-1";
+
+.centerHome {
+	margin-top: 130px;
+	max-height: 600px;
+	text-align: center
+}
+
+.contentLeyenda,.contentRegistro {
+	padding-left: 20px;
+}
+
+.contentLeyenda {
+	/*background-color:fuchsia;*/
+	margin-top: 100px;
+}
+
+.firstP,.secondP,.queEs {
+	display: block;
+	text-align: left;
+	width: 85%;
+}
+
+.firstP,.secondP {
+	font-size: 13px;
+}
+
+.secondP {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.queEs {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.contentRegistro {
+	background-color: #f0f1f3;
+	margin-top: 15px;
+}
+
+.lblRegistrate {
+	font-weight: bold;
+	font-size: 20px;
+	font-family: serif;
+}
+
+.contentRegistro .txt,.txtActivar {
+	border-radius: 5px;
+	background-image: url("../../images/home/correo y contrsena.png");
+	background-color: #c9c0bf;
+	color: white;
+	padding-left: 5px;
+	margin-top: 12px;
+	height: 25px;
+	width: 225px;
+}
+
+.txt.contrasenia {
+	margin-top: 5px;
+}
+
+.contentRegistro .btn,.btnActivar {
+	background-image: url(../../images/home/registrarme.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border-style: none;
+	color: white;
+	font-size: 10px;
+	height: 23px;
+	width: 78px;
+}
+
+.contentRegistro .btn {
+	margin-left: 155px;
+	margin-top: 10px;
+}
+
+/*Sección Activar*/
+.contentLeyenda.leyendaActivar {
+	margin-top: 170px !important;
+}
+
+.btnActivar {
+	margin-top: 18px;
+	margin-left: 5px;
+}

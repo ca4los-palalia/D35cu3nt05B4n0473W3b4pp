@@ -1,0 +1,50 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<style src="/styles/stylesUI/GeneralsStyles.css" />
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.cplsystems.stock.app.vm.direccion.DireccionVM')">
+		
+		<vlayout>
+			
+			<hlayout>
+				<hlayout>
+					<div zclass="spacerLabel">Calle:</div>
+					<textbox cols="30"/>
+				</hlayout>
+				
+				<hlayout>
+					<div zclass="spacerLabel">Ciudad:</div>
+					<textbox cols="30"/>
+				</hlayout>
+			</hlayout>
+			
+			<hlayout>
+				<hlayout>
+					<div zclass="spacerLabel">Colonia:</div>
+					<textbox cols="30"/>
+				</hlayout>
+				
+				<hlayout>
+					<div zclass="spacerLabel">Código postal:</div>
+					<textbox cols="30"/>
+				</hlayout>
+			</hlayout>
+			
+			<hlayout>
+				<hlayout>
+					<div zclass="spacerLabel">Numero exterior:</div>
+					<textbox cols="30"/>
+				</hlayout>
+				
+				<hlayout>
+					<div zclass="spacerLabel">Numero interior:</div>
+					<textbox cols="30"/>
+				</hlayout>
+			</hlayout>
+			
+		</vlayout>
+		
+	</window>
+</zk>

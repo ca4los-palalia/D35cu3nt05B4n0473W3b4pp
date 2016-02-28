@@ -1,0 +1,131 @@
+<?page title="Proveedores" contentType="text/html;charset=UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtK-vLlqH4k8tKyGtUwWXMEOK13TvID2I&amp;callback=initMap"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"/>
+	
+	
+	
+	<window apply="org.zkoss.bind.BindComposer" height="100%"
+		viewModel="@id('vm') @init('printworld.descuentosbanorte.app.controlPanel.ControlPanelPromocionVM')">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<html id="blah"><![CDATA[
+								<script type="text/javascript">
+								
+								var geocoder;
+								var json = new Object()
+								var cordenadas = '${coordenadas}';
+								json = JSON.parse(cordenadas);
+								
+								var promoDesc = json[0].promocion[0].descripcionPromocion;
+								var promoName = json[0].promocion[0].name;
+								
+								
+								var map;
+								var markers = [];
+								
+								
+								function initMap() {
+									
+									geocoder = new google.maps.Geocoder();
+									var direccion = "";
+									var n=1;
+										var options = {
+								        zoom: 16
+								        , center: new google.maps.LatLng(json[0].lat, json[0].lon)
+								        , mapTypeId: google.maps.MapTypeId.TERRAIN
+									};
+										//google.maps.MapTypeId.ROADMAP
+										map = new google.maps.Map(document.getElementById('map'), options);
+										var i =0;
+								    $.each(json, function(index, val) {
+										
+										codeLatLng(function(addr){
+											direccion = String(addr);
+										},val.lat, val.lon);
+										
+									    marker = new google.maps.Marker({
+								            position: new google.maps.LatLng(val.lat, val.lon),
+								            map: map,
+								            title: promoName,
+								            icon: '../../images/toolbar/puntero.png',
+								            cursor: 'default',
+								            draggable: false
+								        });
+								        
+								        google.maps.event.addListener(marker, 'click', function(){
+								            var popup = new google.maps.InfoWindow();
+								            var note = promoDesc + " - " + direccion;
+								            popup.setContent(note);
+								            popup.open(map, this);
+								        });
+								        i++;
+									})
+									
+									map.addListener('click', function(event) {
+									    addMarker(event.latLng);
+									  });
+								}
+								
+								function deleteMarkers() {
+								  clearMarkers();
+								  markers = [];
+								}
+								
+								function addMarker(location) {
+								  var marker = new google.maps.Marker({
+								    position: location,
+								    map: map
+								  });
+								  markers.push(marker);
+								  console.log(markers.length);
+								}
+								
+								function codeLatLng(callback, lat, lon) {
+									var latlng = new google.maps.LatLng(lat,lon);
+									if (geocoder) {
+										geocoder.geocode({'latLng': latlng}, function(results, status) {
+											if (status == google.maps.GeocoderStatus.OK) {
+												if (results[1]) {
+													callback(results[1].formatted_address);
+												} else {
+													console.log("No results found");
+								        		}
+								    		} else {
+								    			console.log("Geocoder failed due to: " + status);
+											}
+										});
+									}
+								}
+								
+								
+								
+								</script>
+		]]></html>
+           
+           
+           
+           
+           
+           
+           
+
+		
+
+		<div id="map" style="width: 500px;height: 500px"></div>
+	</window>
+</zk>
